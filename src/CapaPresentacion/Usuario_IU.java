@@ -175,6 +175,9 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtnombresKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombresKeyTyped(evt);
+            }
         });
 
         jLabel3.setText("APELLIDOS");
@@ -190,6 +193,9 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         txtapellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtapellidosKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtapellidosKeyTyped(evt);
             }
         });
 
@@ -349,6 +355,11 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         btncerrar.setText("CERRAR");
         btncerrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btncerrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btncerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncerrarActionPerformed(evt);
+            }
+        });
 
         btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/printer.png"))); // NOI18N
         btnimprimir.setText("IMPRIMIR");
@@ -359,6 +370,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
 
         jLabel10.setText("CANTIDAD");
 
+        txtcantidad.setEnabled(false);
         txtcantidad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtcantidadFocusGained(evt);
@@ -675,6 +687,26 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
 
     private void txtbuscar_apellidosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar_apellidosKeyPressed
         // TODO add your handling code here:
+        try {
+            setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+            DefaultTableModel tabla_temporal;
+
+            String apellidos = txtbuscar_apellidos.getText();
+
+            UsuarioBD oUsuarioBD = new UsuarioBD();
+
+            tabla_temporal = oUsuarioBD.buscarUsuarioXdni(apellidos);
+            tabla_reporte_usuario.setModel(tabla_temporal);
+
+            int cantLista = tabla_temporal.getRowCount();
+            txtcantidad.setText("" + cantLista);
+
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        } catch (Exception e) {
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            JOptionPane.showMessageDialog(null, "error al buscar_apellidos");
+        }                                                                                                                                                                                 
        
     }//GEN-LAST:event_txtbuscar_apellidosKeyPressed
 
@@ -864,6 +896,27 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
             btnRegistrar.doClick();
         }
     }//GEN-LAST:event_cmbTiendaKeyPressed
+
+    private void txtnombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c) ) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtnombresKeyTyped
+
+    private void txtapellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidosKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c) ) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtapellidosKeyTyped
+
+    private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btncerrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
