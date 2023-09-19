@@ -114,10 +114,11 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         btnCerrar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(204, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("TURNO");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
@@ -145,6 +146,11 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
+            }
+        });
+        btnBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnBuscarKeyPressed(evt);
             }
         });
 
@@ -346,7 +352,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(33, Short.MAX_VALUE))
+                        .addContainerGap(37, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
@@ -481,6 +487,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
             btnBuscar.requestFocus();
+            btnBuscar.doClick();
         }
     }//GEN-LAST:event_txtDniKeyPressed
 
@@ -528,6 +535,14 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtHoraInicio.requestFocus();
+            
+        }
+    }//GEN-LAST:event_btnBuscarKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

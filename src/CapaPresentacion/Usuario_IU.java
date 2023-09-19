@@ -137,10 +137,11 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         txtcantidad = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(204, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("USUARIO");
 
         jLabel1.setText("DNI");
 
@@ -310,6 +311,11 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
 
         jLabel9.setText("BUSCAR APELLIDOS");
 
+        txtbuscar_apellidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscar_apellidosActionPerformed(evt);
+            }
+        });
         txtbuscar_apellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtbuscar_apellidosKeyPressed(evt);
@@ -416,20 +422,20 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
                         .addGap(466, 466, 466)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtId_TIPO_USUARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtbuscar_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtId_TIPO_USUARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtbuscar_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 459, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -486,7 +492,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                             .addComponent(txtId_TIPO_USUARIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
                             .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -695,8 +701,10 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
 
             UsuarioBD oUsuarioBD = new UsuarioBD();
 
-            tabla_temporal = oUsuarioBD.buscarUsuarioXdni(apellidos);
+            tabla_temporal = oUsuarioBD.buscarUsuario(apellidos);
             tabla_reporte_usuario.setModel(tabla_temporal);
+            
+            
 
             int cantLista = tabla_temporal.getRowCount();
             txtcantidad.setText("" + cantLista);
@@ -706,8 +714,8 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
             JOptionPane.showMessageDialog(null, "error al buscar_apellidos");
-        }                                                                                                                                                                                 
-       
+        }
+                                                                                                                                                                                 
     }//GEN-LAST:event_txtbuscar_apellidosKeyPressed
 
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
@@ -917,6 +925,11 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btncerrarActionPerformed
+
+    private void txtbuscar_apellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscar_apellidosActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtbuscar_apellidosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

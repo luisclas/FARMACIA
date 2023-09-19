@@ -10,6 +10,8 @@ import CapaDatos.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -160,4 +162,39 @@ public class UsuarioBD {
         return tabla_temporal;
 
     }
+    public DefaultTableModel buscarUsuario(String apellidos){
+    DefaultTableModel tabla_temporal;
+    String [] titulos = {"DNI", "NOMBRES", "APELLIDOS", "DIRECCION","CLAVE", "CELULAR", "TIPO_USUARIO", "TIENDA"};
+    String [] registro = new String [8];
+    tabla_temporal = new DefaultTableModel(null, titulos);
+    
+    sql= "SELECT uDni,uNombre,uApellidos,uDireccion,uClave,uCelular,tuNombre,tienda FROM usuario AS u "
+            + "INNER JOIN tipousuario AS tp ON u.idtipousuario=tp.idtipousuario "
+            + "WHERE uApellidos LIKE  '%" + apellidos + "%' OR uNombre LIKE '%" + apellidos + "%'";
+    
+    try {
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            registro [0] = rs.getString("uDni");
+            registro [1] = rs.getString("uNombre");
+            registro [2] = rs.getString("uApellidos");
+            registro [3] = rs.getString("uDireccion");
+            registro[4] = rs.getString("uClave");
+            registro [5] = rs.getString("uCelular");
+            registro [6] = rs.getString("tuNombre");
+            registro [7] = rs.getString("tienda");
+            
+         tabla_temporal.addRow(registro);
+            
+        }
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e, "ERROR AL BUSCAR APELLIDOS....", JOptionPane.ERROR_MESSAGE);
+        return null;
+    
+    }
+    return tabla_temporal;
+}
+   
 }
