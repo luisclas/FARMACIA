@@ -189,7 +189,15 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
             new String [] {
                 "ID", "NOMBRE"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabla_reporte_categorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabla_reporte_categoriasMousePressed(evt);
@@ -296,7 +304,7 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
                     .addComponent(btnEliminar)
                     .addComponent(btnLimpiar)
                     .addComponent(btnCerrar))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -347,31 +355,30 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         
-        if (txtId.getText().length()>0) {
-            if (txtNombre.getText().length()>0) {
-                
+        if (txtId.getText().length() > 0) {
+            if (txtNombre.getText().length() > 0) {
+
                 Categoria oCategoria = new Categoria();
                 CategoriaBD oCategoriaBD = new CategoriaBD();
-                
                 oCategoria.setIdcategoria(Integer.parseInt(txtId.getText().toUpperCase().trim()));
                 oCategoria.setCatNombre(txtNombre.getText().toUpperCase().trim());
-                
+
                 boolean rpta = oCategoriaBD.modificarCategoria(oCategoria);
                 if (rpta) {
-                    exito("Se modifico con exito");
+                    exito("SE MODIFICO CON EXITO");
                     reportar_categoria();
                     limpiar();
                     txtNombre.requestFocus();
-                    
+
                 } else {
-                    error("Tienes problemas al modificar");
+                    error("TIENES PROBLEMAS AL MODIFICAR");
                 }
             } else {
-                advertencia("Ingrese el nombre");
+                advertencia("INGRESE EL NOMBRE");
                 txtNombre.requestFocus();
             }
         } else {
-            advertencia("No puedes modificar porque ya existe....");
+            advertencia("NO PUEDES MODIFICAR PORQUE YA EXISTE");
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 

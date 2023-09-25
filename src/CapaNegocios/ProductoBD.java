@@ -70,7 +70,7 @@ public class ProductoBD {
         boolean rpta = false;
     
         sql = "INSERT INTO producto(pSerie,pDescripcion,pObservacion,digemi,pCondicion,idcategoria,idmarca,idmedida) "
-                + " VALUES(?,?,?,?,?,?,?,?)";
+                + "VALUES(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, p.getpSerie());
@@ -127,7 +127,7 @@ public class ProductoBD {
                 tabla_temporal.addRow(registros);
             }
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, e, "Error al buscar producto BD....", JOptionPane.ERROR_MESSAGE);
             return null;
@@ -138,7 +138,7 @@ public class ProductoBD {
       public boolean modificarProducto(Producto p) {
         boolean rpta = false;
     
-        sql = "UPDATE producto SET pDescripcioon=?,pObservacion=?,digemi=?,pCondicion=?,idcategoria=?,idmarca=?,idmedida=? WHERE pSerie=?";
+        sql = "UPDATE producto SET pDescripcion=?,pObservacion=?,digemi=?,pCondicion=?,idcategoria=?,idmarca=?,idmedida=? WHERE pSerie=?";
               
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
@@ -155,7 +155,7 @@ public class ProductoBD {
             rpta = pst.executeUpdate() == 1 ? true:false;
 
             
-        } catch (SQLException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Problemas al modificar ProductoBD....", JOptionPane.ERROR_MESSAGE);
 
             return rpta;
@@ -176,7 +176,7 @@ public class ProductoBD {
             rpta = pst.executeUpdate() == 1 ? true:false;
 
             
-        } catch (SQLException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Problemas al eliminar ProductoBD....", JOptionPane.ERROR_MESSAGE);
 
             return rpta;

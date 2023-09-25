@@ -70,23 +70,21 @@ public class CategoriaBD {
 }
      public boolean modificarCategoria(Categoria c) {
         boolean rpta = false;
-    
         sql = "UPDATE categoria SET catNombre=? WHERE idcategoria=?";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
+
             pst.setString(1, c.getCatNombre());
             pst.setInt(2, c.getIdcategoria());
 
-            rpta = pst.executeUpdate() == 1 ? true:false;
+            rpta = pst.executeUpdate() == 1 ? true : false;
 
-            
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Problemas al modificar CategoriaBD....", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, e, "ERROR AL MODIFICAR CATEGORIA BD", JOptionPane.ERROR_MESSAGE);
             return rpta;
         }
         return rpta;
-}
+     }
      public boolean eliminarCategoria(Categoria c) {
         boolean rpta = false;
     
@@ -134,4 +132,5 @@ public class CategoriaBD {
         }
         return lista;
      }
+     
 }

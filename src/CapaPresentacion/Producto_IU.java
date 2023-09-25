@@ -17,7 +17,9 @@ import CapaNegocios.MedidaBD;
 import CapaNegocios.ProductoBD;
 import CapaNegocios.TipoUsuarioBD;
 import CapaNegocios.UsuarioBD;
+import java.awt.Color;
 import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -38,9 +40,11 @@ public class Producto_IU extends javax.swing.JInternalFrame {
      */
     public Producto_IU() {
         initComponents();
+        reportar();
         cargarCategoria();
         cargarMarca();
         cargarMedida();
+        
     }
 
     private void habilitar() {
@@ -70,14 +74,17 @@ public class Producto_IU extends javax.swing.JInternalFrame {
         txtIdMarca.setText("");
         txtMedida.setText("");
     }
-     private void exito(String mensaje){
-        JOptionPane.showConfirmDialog(this, mensaje,"MENSAJE",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE);
+
+    private void exito(String mensaje) {
+        JOptionPane.showConfirmDialog(this, mensaje, "MENSAJE", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
     }
-    private void error(String mensaje){
-        JOptionPane.showConfirmDialog(this, mensaje,"ERROR",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+
+    private void error(String mensaje) {
+        JOptionPane.showConfirmDialog(this, mensaje, "ERROR", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
     }
-    private void advertencia(String mensaje){
-        JOptionPane.showConfirmDialog(this, mensaje,"ADVERTENCIA",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE);
+
+    private void advertencia(String mensaje) {
+        JOptionPane.showConfirmDialog(this, mensaje, "ADVERTENCIA", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE);
     }
 
     private void limpiar_tabla_formulario() {
@@ -209,6 +216,20 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
         jLabel1.setText("SERIE");
 
+        txtSerie.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSerieFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSerieFocusLost(evt);
+            }
+        });
+        txtSerie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSerieKeyPressed(evt);
+            }
+        });
+
         txtMedida.setEnabled(false);
 
         txtIdMarca.setEnabled(false);
@@ -217,13 +238,74 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
         jLabel2.setText("DESCRIPCION");
 
+        txtDescripcion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDescripcionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDescripcionFocusLost(evt);
+            }
+        });
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyTyped(evt);
+            }
+        });
+
         jLabel3.setText("OBSERVACION");
 
+        txtObservacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtObservacionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtObservacionFocusLost(evt);
+            }
+        });
+        txtObservacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtObservacionActionPerformed(evt);
+            }
+        });
+        txtObservacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtObservacionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtObservacionKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("DIGEMI");
+
+        txtDigemi.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDigemiFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDigemiFocusLost(evt);
+            }
+        });
+        txtDigemi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDigemiKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDigemiKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("CONDICION");
 
         cmbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NORMAL", "RECETA MEDICA", " " }));
+        cmbCondicion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbCondicionKeyPressed(evt);
+            }
+        });
 
         jLabel6.setText("CATEGORIA");
 
@@ -231,6 +313,11 @@ public class Producto_IU extends javax.swing.JInternalFrame {
         cmbCategoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbCategoriaItemStateChanged(evt);
+            }
+        });
+        cmbCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbCategoriaKeyPressed(evt);
             }
         });
 
@@ -242,6 +329,11 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                 cmbMarcaItemStateChanged(evt);
             }
         });
+        cmbMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbMarcaKeyPressed(evt);
+            }
+        });
 
         jLabel8.setText("MEDIDA");
 
@@ -251,11 +343,29 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                 cmbMedidaItemStateChanged(evt);
             }
         });
+        cmbMedida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbMedidaKeyPressed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Productos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(204, 51, 255))); // NOI18N
 
         jLabel9.setText("PRODUCTO");
 
+        txtProducto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtProductoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtProductoFocusLost(evt);
+            }
+        });
+        txtProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProductoActionPerformed(evt);
+            }
+        });
         txtProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtProductoKeyPressed(evt);
@@ -288,9 +398,22 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "SERIE", "DESCRIPCION", "OBSERVACION", "DIGEMI", "CONDICION", "CATEGORIA", "MARCA", "MEDIDA"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla_reporte_producto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabla_reporte_productoMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_reporte_producto);
 
         btnComposicion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/123456.png"))); // NOI18N
@@ -304,6 +427,11 @@ public class Producto_IU extends javax.swing.JInternalFrame {
         btnNuevo.setText("NUEVO");
         btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/disk.png"))); // NOI18N
         btnRegistrar.setText("REGISTRAR");
@@ -363,7 +491,7 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,57 +517,55 @@ public class Producto_IU extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnComposicion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtObservacion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtSerie)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtIdMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtObservacion)
-                                    .addComponent(txtDescripcion)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtDigemi, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cmbCondicion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel7)))
+                                        .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtDigemi)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbCondicion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbMedida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -475,18 +601,17 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                                 .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel7)
                                 .addComponent(cmbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8)
-                                .addComponent(cmbMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cmbMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10))
-                            .addComponent(btnComposicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnComposicion, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -548,79 +673,76 @@ public class Producto_IU extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
         if (txtSerie.getText().length() > 0) {
-                if (txtDescripcion.getText().length() > 0) {
-                    if (txtIdCategoria.getText().length() > 0) {
-                        if (txtIdMarca.getText().length() > 0) {
-                            if (txtMedida.getText().length() > 0) {
-                                
+            if (txtDescripcion.getText().length() > 0) {
+                if (txtIdCategoria.getText().length() > 0) {
+                    if (txtIdMarca.getText().length() > 0) {
+                        if (txtMedida.getText().length() > 0) {
 
-                                    Producto oProducto = new Producto();
-                                    ProductoBD oProductoBD = new ProductoBD();
-                                    oProducto.setpSerie(txtSerie.getText().trim());
-                                    oProducto.setpDescripcion(txtDescripcion.getText().toUpperCase().trim());
-                                    oProducto.setpObservacion(txtObservacion.getText().toUpperCase().trim());
-                                    oProducto.setDigemi(txtDigemi.getText().toUpperCase().trim());
-                                    oProducto.setpCondicion(cmbCondicion.getSelectedItem().toString());
-                                    oProducto.setIdcategoria(Integer.parseInt(txtIdCategoria.getText()));
-                                    oProducto.setIdmarca(Integer.parseInt(txtIdMarca.getText()));
-                                    oProducto.setIdmedida(Integer.parseInt(txtMedida.getText()));
+                            Producto oProducto = new Producto();
+                            ProductoBD oProductoBD = new ProductoBD();
+                            
+                            oProducto.setpSerie(txtSerie.getText().trim());
+                            oProducto.setpDescripcion(txtDescripcion.getText().toUpperCase().trim());
+                            oProducto.setpObservacion(txtObservacion.getText().toUpperCase().trim());
+                            oProducto.setDigemi(txtDigemi.getText().toUpperCase().trim());
+                            oProducto.setpCondicion(cmbCondicion.getSelectedItem().toString());
+                            oProducto.setIdcategoria(Integer.parseInt(txtIdCategoria.getText()));
+                            oProducto.setIdmarca(Integer.parseInt(txtIdMarca.getText()));
+                            oProducto.setIdmedida(Integer.parseInt(txtMedida.getText()));
 
-                                    boolean rpta = oProductoBD.registrarProducto(oProducto);
-                                    if (rpta) {
-                                        exito("Se registro con exito");
-                                        reportar();
-                                        limpiar();
-                                        deshabilitar();
-                                    } else {
-                                        error("Tiene problemas al registrar producto");
-                                    }
-
-                               
-
+                            boolean rpta = oProductoBD.registrarProducto(oProducto);
+                            if (rpta) {
+                                exito("Se registro con exito");
+                                reportar();
+                                limpiar();
+                                deshabilitar();
                             } else {
-                                advertencia("Seleccione una medida");
-                                
-
+                                error("Tiene problemas al registrar producto");
                             }
 
                         } else {
-                            advertencia("Seleccione un laboratorio");
-                           
+                            advertencia("Seleccione una medida");
+
                         }
 
                     } else {
-                        advertencia("Seleccione una categoria");
-                        
+                        advertencia("Seleccione un laboratorio");
+
                     }
 
                 } else {
-                    advertencia("Ingrese la descripcion del producto");
-                    txtDescripcion.requestFocus();
+                    advertencia("Seleccione una categoria");
+
                 }
 
             } else {
-                advertencia("Ingrese el codigo del producto");
-                txtSerie.requestFocus();
+                advertencia("Ingrese la descripcion del producto");
+                txtDescripcion.requestFocus();
             }
+
+        } else {
+            advertencia("Ingrese el codigo del producto");
+            txtSerie.requestFocus();
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         if (txtSerie.getText().length() > 0) {
-            
+
             String serie = txtSerie.getText();
-            
+
             DefaultTableModel tabla_temporal;
             ProductoBD oProductoBD = new ProductoBD();
-            
+
             tabla_temporal = oProductoBD.buscarProducto(serie);
-            
+
             int cantida_productos_encontrados = tabla_temporal.getRowCount();
             txtCantidad.setText("" + cantida_productos_encontrados);
-            
+
             limpiar_tabla_formulario();
             if (cantida_productos_encontrados > 0) {
-                
+
                 txtDescripcion.setText(tabla_temporal.getValueAt(0, 1).toString());
                 txtObservacion.setText(tabla_temporal.getValueAt(0, 2).toString());
                 txtDigemi.setText(tabla_temporal.getValueAt(0, 3).toString());
@@ -631,11 +753,11 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                 txtMedida.setText(tabla_temporal.getValueAt(0, 10).toString());
                 txtIdCategoria.setText(tabla_temporal.getValueAt(0, 8).toString());
                 txtIdMarca.setText(tabla_temporal.getValueAt(0, 9).toString());
-                
+
                 DefaultTableModel tabla_temporal_productos = (DefaultTableModel) this.tabla_reporte_producto.getModel();
-                
+
                 for (int i = 0; i < cantida_productos_encontrados; i++) {
-                    
+
                     serie = tabla_temporal.getValueAt(i, 0).toString();
                     String descripcion = tabla_temporal.getValueAt(i, 1).toString();
                     String observacion = tabla_temporal.getValueAt(i, 2).toString();
@@ -644,12 +766,12 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                     String categoria = tabla_temporal.getValueAt(i, 5).toString();
                     String marca = tabla_temporal.getValueAt(i, 6).toString();
                     String medida = tabla_temporal.getValueAt(i, 7).toString();
-                    
-                    Object [] data = {serie,descripcion,observacion,digemi,condicion,categoria,marca,medida};
+
+                    Object[] data = {serie, descripcion, observacion, digemi, condicion, categoria, marca, medida};
                     tabla_temporal_productos.addRow(data);
                 }
                 tabla_reporte_producto.setModel(tabla_temporal_productos);
-                
+
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontro el producto buscado");
                 txtSerie.requestFocus();
@@ -662,68 +784,64 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        if (txtSerie.getText().length() > 0) {
-                if (txtDescripcion.getText().length() > 0) {
-                    if (txtIdCategoria.getText().length() > 0) {
-                        if (txtIdMarca.getText().length() > 0) {
-                            if (txtMedida.getText().length() > 0) {
-                                
+       if (txtSerie.getText().length() > 0) {
+            if (txtDescripcion.getText().length() > 0) {
+                if (txtIdCategoria.getText().length() > 0) {
+                    if (txtIdMarca.getText().length() > 0) {
+                        if (txtMedida.getText().length() > 0) {
 
-                                    Producto oProducto = new Producto();
-                                    ProductoBD oProductoBD = new ProductoBD();
-                                    oProducto.setpSerie(txtSerie.getText().trim());
-                                    oProducto.setpDescripcion(txtDescripcion.getText().toUpperCase().trim());
-                                    oProducto.setpObservacion(txtObservacion.getText().toUpperCase().trim());
-                                    oProducto.setDigemi(txtDigemi.getText().toUpperCase().trim());
-                                    oProducto.setpCondicion(cmbCondicion.getSelectedItem().toString());
-                                    oProducto.setIdcategoria(Integer.parseInt(txtIdCategoria.getText()));
-                                    oProducto.setIdmarca(Integer.parseInt(txtIdMarca.getText()));
-                                    oProducto.setIdmedida(Integer.parseInt(txtMedida.getText()));
+                            Producto oProducto = new Producto();
+                            ProductoBD oProductoBD = new ProductoBD();
+                            oProducto.setpSerie(txtSerie.getText().trim());
+                            oProducto.setpDescripcion(txtDescripcion.getText().toUpperCase().trim());
+                            oProducto.setpObservacion(txtObservacion.getText().toUpperCase().trim());
+                            oProducto.setDigemi(txtDigemi.getText().toUpperCase().trim());
+                            oProducto.setpCondicion(cmbCondicion.getSelectedItem().toString());
+                            oProducto.setIdcategoria(Integer.parseInt(txtIdCategoria.getText()));
+                            oProducto.setIdmarca(Integer.parseInt(txtIdMarca.getText()));
+                            oProducto.setIdmedida(Integer.parseInt(txtMedida.getText()));
 
-                                    boolean rpta = oProductoBD.modificarProducto(oProducto);
-                                    if (rpta) {
-                                        exito("Se modificp con exito");
-                                        reportar();
-                                        limpiar();
-                                        deshabilitar();
-                                    } else {
-                                        error("Tiene problemas al modificar producto");
-                                    }
-
-                               
-
+                            boolean rpta = oProductoBD.modificarProducto(oProducto);
+                            if (rpta) {
+                                exito("Se modifico con exito");
+                                reportar();
+                                limpiar();
+                                deshabilitar();
                             } else {
-                                advertencia("Seleccione una medida");
-                                
-
+                                error("Tiene problemas al modificar producto");
                             }
 
                         } else {
-                            advertencia("Seleccione un laboratorio");
-                           
+                            advertencia("Seleccione una medida");
+
                         }
 
                     } else {
-                        advertencia("Seleccione una categoria");
-                        
+                        advertencia("Seleccione un laboratorio");
+
                     }
 
                 } else {
-                    advertencia("Ingrese la descripcion del producto");
-                    txtDescripcion.requestFocus();
+                    advertencia("Seleccione una categoria");
+
                 }
 
             } else {
-                advertencia("Ingrese el codigo del producto");
-                txtSerie.requestFocus();
+                advertencia("Ingrese la descripcion del producto");
+                txtDescripcion.requestFocus();
             }
+
+        } else {
+            advertencia("Ingrese el codigo del producto");
+            txtSerie.requestFocus();
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         try {
-            if (txtSerie.getText().length()>0) {
-                
+            if (txtSerie.getText().length() > 0) {
+
                 String serie = txtSerie.getText();
                 int aviso = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de eliminar");
                 if (aviso == 0) {
@@ -735,11 +853,11 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                         limpiar();
                         deshabilitar();
                         txtSerie.requestFocus();
-                        
+
                     } else {
                         error("Tienes problemas al eliminar el producto");
                     }
-               
+
                 }
             } else {
                 error("Falta codigo del producto a eliminar");
@@ -752,18 +870,18 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
     private void txtProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductoKeyPressed
         // TODO add your handling code here:
-        
+
         limpiar_tabla_formulario();
-        
-        String descripcion = txtProducto.getText();
+
+        String descripcion = txtDescripcion.getText();
         DefaultTableModel tabla_temporal;
         DefaultTableModel tabla_temporal_producto = (DefaultTableModel) tabla_reporte_producto.getModel();
         ProductoBD oProductoBD = new ProductoBD();
         tabla_temporal = oProductoBD.buscarProductoDescripcion(descripcion);
         int cant = tabla_temporal.getRowCount();
-        
+
         for (int i = 0; i < cant; i++) {
-            
+
             String serie = tabla_temporal.getValueAt(i, 0).toString();
             descripcion = tabla_temporal.getValueAt(i, 1).toString();
             String observacion = tabla_temporal.getValueAt(i, 2).toString();
@@ -772,13 +890,174 @@ public class Producto_IU extends javax.swing.JInternalFrame {
             String categoria = tabla_temporal.getValueAt(i, 5).toString();
             String marca = tabla_temporal.getValueAt(i, 6).toString();
             String medida = tabla_temporal.getValueAt(i, 7).toString();
-            
-            Object[] data = {serie,descripcion,observacion,digemi,condicion,categoria,marca,medida};
+
+            Object[] data = {serie, descripcion, observacion, digemi, condicion, categoria, marca, medida};
             tabla_temporal_producto.addRow(data);
         }
         tabla_reporte_producto.setModel(tabla_temporal_producto);
         txtCantidad.setText("" + cant);
     }//GEN-LAST:event_txtProductoKeyPressed
+
+    private void tabla_reporte_productoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_reporte_productoMousePressed
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            int fila_seleccionada = tabla_reporte_producto.getSelectedRow();
+
+            txtSerie.setText(tabla_reporte_producto.getValueAt(fila_seleccionada, 0).toString());
+            txtDescripcion.setText(tabla_reporte_producto.getValueAt(fila_seleccionada, 1).toString());
+            txtObservacion.setText(tabla_reporte_producto.getValueAt(fila_seleccionada, 2).toString());
+            txtDigemi.setText(tabla_reporte_producto.getValueAt(fila_seleccionada, 3).toString());
+            cmbCondicion.setSelectedItem(tabla_reporte_producto.getValueAt(fila_seleccionada, 4).toString());
+            cmbCategoria.setSelectedItem(tabla_reporte_producto.getValueAt(fila_seleccionada, 5).toString());
+            cmbMarca.setSelectedItem(tabla_reporte_producto.getValueAt(fila_seleccionada, 6).toString());
+            cmbMedida.setSelectedItem(tabla_reporte_producto.getValueAt(fila_seleccionada, 7).toString());
+
+        }
+    }//GEN-LAST:event_tabla_reporte_productoMousePressed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // TODO add your handling code here:
+         habilitar();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void txtSerieFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSerieFocusGained
+        // TODO add your handling code here:
+        txtSerie.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtSerieFocusGained
+
+    private void txtSerieFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSerieFocusLost
+        // TODO add your handling code here:
+        txtSerie.setBackground(Color.white);
+    }//GEN-LAST:event_txtSerieFocusLost
+
+    private void txtDescripcionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusGained
+        // TODO add your handling code here:
+        txtDescripcion.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtDescripcionFocusGained
+
+    private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
+        // TODO add your handling code here:
+        txtDescripcion.setBackground(Color.white);
+    }//GEN-LAST:event_txtDescripcionFocusLost
+
+    private void txtObservacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtObservacionFocusGained
+        // TODO add your handling code here:
+        txtObservacion.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtObservacionFocusGained
+
+    private void txtObservacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtObservacionFocusLost
+        // TODO add your handling code here:
+        txtObservacion.setBackground(Color.white);
+    }//GEN-LAST:event_txtObservacionFocusLost
+
+    private void txtDigemiFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDigemiFocusGained
+        // TODO add your handling code here:
+        txtDigemi.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtDigemiFocusGained
+
+    private void txtDigemiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDigemiFocusLost
+        // TODO add your handling code here:
+        txtDigemi.setBackground(Color.white);
+    }//GEN-LAST:event_txtDigemiFocusLost
+
+    private void txtProductoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductoFocusGained
+        // TODO add your handling code here:
+        txtProducto.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtProductoFocusGained
+
+    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProductoActionPerformed
+
+    private void txtProductoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductoFocusLost
+        // TODO add your handling code here:
+        txtProducto.setBackground(Color.white);
+    }//GEN-LAST:event_txtProductoFocusLost
+
+    private void txtDigemiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDigemiKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            cmbCondicion.requestFocus();
+        }
+    }//GEN-LAST:event_txtDigemiKeyPressed
+
+    private void cmbCondicionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbCondicionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            cmbCategoria.requestFocus();
+        }
+    }//GEN-LAST:event_cmbCondicionKeyPressed
+
+    private void cmbCategoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbCategoriaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            cmbMarca.requestFocus();
+        }
+    }//GEN-LAST:event_cmbCategoriaKeyPressed
+
+    private void cmbMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbMarcaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            cmbMedida.requestFocus();
+        }
+    }//GEN-LAST:event_cmbMarcaKeyPressed
+
+    private void txtSerieKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtDescripcion.requestFocus();
+        }
+    }//GEN-LAST:event_txtSerieKeyPressed
+
+    private void txtDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtObservacion.requestFocus();
+        }
+    }//GEN-LAST:event_txtDescripcionKeyPressed
+
+    private void txtObservacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtObservacionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtDigemi.requestFocus();
+        }
+    }//GEN-LAST:event_txtObservacionKeyPressed
+
+    private void cmbMedidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbMedidaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            btnRegistrar.requestFocus();
+            btnRegistrar.doClick();
+        }
+    }//GEN-LAST:event_cmbMedidaKeyPressed
+
+    private void txtObservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObservacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtObservacionActionPerformed
+
+    private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDescripcionKeyTyped
+
+    private void txtObservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtObservacionKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtObservacionKeyTyped
+
+    private void txtDigemiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDigemiKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDigemiKeyTyped
 
     private void reportar() {
         try {
@@ -804,18 +1083,18 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                 String categoria = tabla_temporal.getValueAt(i, 5).toString();
                 String marca = tabla_temporal.getValueAt(i, 6).toString();
                 String medida = tabla_temporal.getValueAt(i, 7).toString();
-                
-                Object[] data = {serie,descripcion,observacion,digemi,condicion,categoria,marca,medida};
+
+                Object[] data = {serie, descripcion, observacion, digemi, condicion, categoria, marca, medida};
                 tabla_temporal_producto.addRow(data);
 
             }
             tabla_reporte_producto.setModel(tabla_temporal_producto);
-            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); 
-            
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         } catch (Exception ex) {
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
             ex.printStackTrace();
-            
+
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

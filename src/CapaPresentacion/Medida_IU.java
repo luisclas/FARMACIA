@@ -8,6 +8,8 @@ package CapaPresentacion;
 import CapaDatos.Medida;
 import CapaNegocios.MarcaBD;
 import CapaNegocios.MedidaBD;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -104,7 +106,41 @@ public class Medida_IU extends javax.swing.JInternalFrame {
 
         jLabel3.setText("PRESENTACION");
 
+        txtPresentacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPresentacionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPresentacionFocusLost(evt);
+            }
+        });
+        txtPresentacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPresentacionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPresentacionKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("EQUIVALENCIA");
+
+        txtEquivalencia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEquivalenciaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEquivalenciaFocusLost(evt);
+            }
+        });
+        txtEquivalencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEquivalenciaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEquivalenciaKeyTyped(evt);
+            }
+        });
 
         tabla_reportes_medida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -332,6 +368,57 @@ public class Medida_IU extends javax.swing.JInternalFrame {
             advertencia("Ingrese un codigo....");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtPresentacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPresentacionFocusGained
+        // TODO add your handling code here:
+         txtPresentacion.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtPresentacionFocusGained
+
+    private void txtPresentacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPresentacionFocusLost
+        // TODO add your handling code here:
+        txtPresentacion.setBackground(Color.white);
+    }//GEN-LAST:event_txtPresentacionFocusLost
+
+    private void txtEquivalenciaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEquivalenciaFocusGained
+        // TODO add your handling code here:
+        txtEquivalencia.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtEquivalenciaFocusGained
+
+    private void txtEquivalenciaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEquivalenciaFocusLost
+        // TODO add your handling code here:
+        txtEquivalencia.setBackground(Color.white);
+    }//GEN-LAST:event_txtEquivalenciaFocusLost
+
+    private void txtPresentacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresentacionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtEquivalencia.requestFocus();
+        }
+    }//GEN-LAST:event_txtPresentacionKeyPressed
+
+    private void txtEquivalenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEquivalenciaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            btnRegistrar.requestFocus();
+            btnRegistrar.doClick();
+        }
+    }//GEN-LAST:event_txtEquivalenciaKeyPressed
+
+    private void txtPresentacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresentacionKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPresentacionKeyTyped
+
+    private void txtEquivalenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEquivalenciaKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEquivalenciaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

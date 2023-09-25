@@ -56,6 +56,7 @@ public class MENU_IU extends javax.swing.JFrame {
         Menu_item_Categoria = new javax.swing.JMenuItem();
         Menu_item_medida = new javax.swing.JMenuItem();
         Menu_item_producto = new javax.swing.JMenuItem();
+        Menu_item_Composicion = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -186,6 +187,14 @@ public class MENU_IU extends javax.swing.JFrame {
         });
         jMenu1.add(Menu_item_producto);
 
+        Menu_item_Composicion.setText("Composicion");
+        Menu_item_Composicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_item_ComposicionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Menu_item_Composicion);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("COMPRAS");
@@ -304,6 +313,17 @@ public class MENU_IU extends javax.swing.JFrame {
             
     }//GEN-LAST:event_Menu_item_productoActionPerformed
 
+    private void Menu_item_ComposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_ComposicionActionPerformed
+        // TODO add your handling code here:
+       Composicion_IU frame = new Composicion_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();  
+    }//GEN-LAST:event_Menu_item_ComposicionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -341,6 +361,7 @@ public class MENU_IU extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Menu_item_Categoria;
+    private javax.swing.JMenuItem Menu_item_Composicion;
     private javax.swing.JMenuItem Menu_item_LABORATORIO;
     private javax.swing.JMenuItem Menu_item_TipoUsuario;
     private javax.swing.JMenuItem Menu_item_Turno;
