@@ -54,8 +54,10 @@ public class Medida_IU extends javax.swing.JInternalFrame {
             tabla_temporal = oMedidaBD.reportarMedida();
 
             tabla_reportes_medida.setModel(tabla_temporal);
-            int cant = tabla_temporal.getRowCount();
+             int cant = tabla_temporal.getRowCount();
             txtCantidad.setText("" + cant);
+            
+             
 
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 

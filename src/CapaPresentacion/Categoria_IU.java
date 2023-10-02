@@ -70,6 +70,8 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
                 tabla_temporal.addRow(data);
 
             }
+            int cant = tabla_temporal.getRowCount();
+            txtCantidad.setText("" + cant);
 
             tabla_reporte_categorias.setModel(tabla_temporal);
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

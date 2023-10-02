@@ -74,6 +74,7 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
                 tabla_temporal_composicion.addRow(data);
 
             }
+            
 
             tabla_reportar_composicion.setModel(tabla_temporal_composicion);
             
@@ -127,6 +128,7 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
 
         jLabel2.setText("PRODUCTO");
 
+        txtProductos.setEnabled(false);
         txtProductos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtProductosFocusGained(evt);
@@ -148,6 +150,11 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarProductoActionPerformed(evt);
+            }
+        });
+        btnBuscarProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnBuscarProductoKeyPressed(evt);
             }
         });
 
@@ -183,7 +190,7 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "ID", "COMPOSICION", "SERIE"
             }
         ));
         tabla_reportar_composicion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -196,10 +203,21 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
             tabla_reportar_composicion.getColumnModel().getColumn(0).setMinWidth(100);
             tabla_reportar_composicion.getColumnModel().getColumn(0).setPreferredWidth(100);
             tabla_reportar_composicion.getColumnModel().getColumn(0).setMaxWidth(100);
+            tabla_reportar_composicion.getColumnModel().getColumn(1).setMinWidth(650);
+            tabla_reportar_composicion.getColumnModel().getColumn(1).setPreferredWidth(650);
+            tabla_reportar_composicion.getColumnModel().getColumn(1).setMaxWidth(650);
+            tabla_reportar_composicion.getColumnModel().getColumn(2).setMinWidth(330);
+            tabla_reportar_composicion.getColumnModel().getColumn(2).setPreferredWidth(330);
+            tabla_reportar_composicion.getColumnModel().getColumn(2).setMaxWidth(330);
         }
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/cerrar.png"))); // NOI18N
         btnCerrar.setText("CERRAR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/eliminar2.png"))); // NOI18N
@@ -219,39 +237,38 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtComposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtProductos))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtComposicion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrar)))
+                        .addComponent(btnCerrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 251, Short.MAX_VALUE))
+                            .addComponent(txtProductos))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarProducto))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscarProducto)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -267,7 +284,7 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar)
                     .addComponent(btnEliminar))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -352,15 +369,7 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
 
     private void tabla_reportar_composicionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_reportar_composicionMousePressed
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2) {
-            int fila_seleccionada = tabla_reportar_composicion.getSelectedRow();
-
-            txtSerie.setText(tabla_reportar_composicion.getValueAt(fila_seleccionada, 0).toString());
-            txtProductos.setText(tabla_reportar_composicion.getValueAt(fila_seleccionada, 1).toString());
-            txtComposicion.setText(tabla_reportar_composicion.getValueAt(fila_seleccionada, 2).toString());
-            
-
-        }
+        
     }//GEN-LAST:event_tabla_reportar_composicionMousePressed
 
     private void txtSerieFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSerieFocusGained
@@ -403,25 +412,21 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
 
     private void txtComposicionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComposicionKeyTyped
         // TODO add your handling code here:
-         char c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
-            evt.consume();
-        }
+         
     }//GEN-LAST:event_txtComposicionKeyTyped
 
     private void txtSerieKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyPressed
         // TODO add your handling code here:
          if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
-            txtProductos.requestFocus();
+            btnBuscarProducto.requestFocus();
+            btnBuscarProducto.doClick();
             
         }
     }//GEN-LAST:event_txtSerieKeyPressed
 
     private void txtProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductosKeyPressed
         // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
-            txtComposicion.requestFocus();
-        }
+        
     }//GEN-LAST:event_txtProductosKeyPressed
 
     private void txtComposicionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComposicionKeyPressed
@@ -429,9 +434,22 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
             btnRegistrar.requestFocus();
             btnRegistrar.doClick();
+        }
     }//GEN-LAST:event_txtComposicionKeyPressed
 
-    }
+    private void btnBuscarProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarProductoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtComposicion.requestFocus();
+        } 
+    }//GEN-LAST:event_btnBuscarProductoKeyPressed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProducto;

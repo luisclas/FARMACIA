@@ -158,13 +158,10 @@ public class Marca_IU extends javax.swing.JInternalFrame {
 
         tabla_reporte_marca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2"
             }
         ));
         tabla_reporte_marca.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -173,6 +170,11 @@ public class Marca_IU extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tabla_reporte_marca);
+        if (tabla_reporte_marca.getColumnModel().getColumnCount() > 0) {
+            tabla_reporte_marca.getColumnModel().getColumn(0).setMinWidth(100);
+            tabla_reporte_marca.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tabla_reporte_marca.getColumnModel().getColumn(0).setMaxWidth(100);
+        }
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/guardar.png"))); // NOI18N
         btnRegistrar.setText("REGISTRAR");

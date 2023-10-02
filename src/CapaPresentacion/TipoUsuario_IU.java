@@ -52,7 +52,8 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
             tabla_temporal = oTipoUsuarioBD.reportarTipoUsuario();
             tabla_reporte_TipoUsuario.setModel(tabla_temporal);
 
-            int cant = tabla_temporal.getRowCount();
+           int cant = tabla_temporal.getRowCount();
+            txtCantidad.setText("" + cant);
 
         } catch (Exception e) {
         }

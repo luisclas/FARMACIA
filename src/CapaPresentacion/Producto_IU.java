@@ -402,7 +402,7 @@ public class Producto_IU extends javax.swing.JInternalFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -415,11 +415,21 @@ public class Producto_IU extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tabla_reporte_producto);
+        if (tabla_reporte_producto.getColumnModel().getColumnCount() > 0) {
+            tabla_reporte_producto.getColumnModel().getColumn(0).setMinWidth(100);
+            tabla_reporte_producto.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tabla_reporte_producto.getColumnModel().getColumn(0).setMaxWidth(100);
+            tabla_reporte_producto.getColumnModel().getColumn(1).setMinWidth(330);
+            tabla_reporte_producto.getColumnModel().getColumn(1).setPreferredWidth(330);
+            tabla_reporte_producto.getColumnModel().getColumn(1).setMaxWidth(330);
+        }
 
         btnComposicion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/123456.png"))); // NOI18N
         btnComposicion.setText("COMPOSICION");
 
         jLabel10.setText("CANTIDAD");
+
+        txtCantidad.setEnabled(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -873,7 +883,7 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
         limpiar_tabla_formulario();
 
-        String descripcion = txtDescripcion.getText();
+        String descripcion = txtProducto.getText();
         DefaultTableModel tabla_temporal;
         DefaultTableModel tabla_temporal_producto = (DefaultTableModel) tabla_reporte_producto.getModel();
         ProductoBD oProductoBD = new ProductoBD();
@@ -1037,10 +1047,7 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
     private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
         // TODO add your handling code here:
-         char c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
-            evt.consume();
-        }
+         
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void txtObservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtObservacionKeyTyped

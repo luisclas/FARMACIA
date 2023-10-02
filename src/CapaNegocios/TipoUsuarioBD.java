@@ -7,7 +7,6 @@ package CapaNegocios;
 
 import CapaConexion.Conexion;
 import CapaDatos.TipoUsuario;
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
