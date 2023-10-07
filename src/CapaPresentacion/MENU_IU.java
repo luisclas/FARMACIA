@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,6 +62,7 @@ public class MENU_IU extends javax.swing.JFrame {
         Menu_item_cuentas_bancarias = new javax.swing.JMenuItem();
         menu_compras = new javax.swing.JMenu();
         Menu_item_compras = new javax.swing.JMenuItem();
+        Menu_item_compras_varios = new javax.swing.JMenuItem();
         menu_inventario = new javax.swing.JMenu();
         menu_ventas = new javax.swing.JMenu();
         menu_caja = new javax.swing.JMenu();
@@ -76,6 +78,11 @@ public class MENU_IU extends javax.swing.JFrame {
         btnProductos.setFocusable(false);
         btnProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnProductos);
         jToolBar1.add(jSeparator1);
 
@@ -84,6 +91,11 @@ public class MENU_IU extends javax.swing.JFrame {
         btnCompras.setFocusable(false);
         btnCompras.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCompras.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprasActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnCompras);
         jToolBar1.add(jSeparator2);
 
@@ -241,6 +253,14 @@ public class MENU_IU extends javax.swing.JFrame {
         });
         menu_compras.add(Menu_item_compras);
 
+        Menu_item_compras_varios.setText("Reporte de Compras Varios");
+        Menu_item_compras_varios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_item_compras_variosActionPerformed(evt);
+            }
+        });
+        menu_compras.add(Menu_item_compras_varios);
+
         jMenuBar1.add(menu_compras);
 
         menu_inventario.setText("INVENTARIO");
@@ -378,7 +398,11 @@ public class MENU_IU extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        dispose();
+        int respuesta = JOptionPane.showConfirmDialog(null, "Estas seguro de salir?", "confirma", JOptionPane.YES_NO_OPTION);
+        if (JOptionPane.OK_OPTION == respuesta) {
+            System.exit(0);
+        }
+
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void Menu_item_cuentas_bancariasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_cuentas_bancariasActionPerformed
@@ -413,6 +437,40 @@ public class MENU_IU extends javax.swing.JFrame {
 
         frame.show();
     }//GEN-LAST:event_Menu_item_ProveedorActionPerformed
+
+    private void Menu_item_compras_variosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_compras_variosActionPerformed
+        // TODO add your handling code here:
+        ReporteComprasVarios_IU frame = new ReporteComprasVarios_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_Menu_item_compras_variosActionPerformed
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        // TODO add your handling code here:
+        Producto_IU frame = new Producto_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
+        // TODO add your handling code here:
+        Compras_IU frame = new Compras_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+
+    }//GEN-LAST:event_btnComprasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,6 +516,7 @@ public class MENU_IU extends javax.swing.JFrame {
     private javax.swing.JMenuItem Menu_item_Turno;
     private javax.swing.JMenuItem Menu_item_Usuario;
     private javax.swing.JMenuItem Menu_item_compras;
+    private javax.swing.JMenuItem Menu_item_compras_varios;
     private javax.swing.JMenuItem Menu_item_cuentas_bancarias;
     private javax.swing.JMenuItem Menu_item_medida;
     private javax.swing.JMenuItem Menu_item_producto;
@@ -468,7 +527,7 @@ public class MENU_IU extends javax.swing.JFrame {
     public javax.swing.JButton btnIngresos;
     public javax.swing.JButton btnProductos;
     public javax.swing.JButton btnVentas;
-    public javax.swing.JDesktopPane escritorio;
+    public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;

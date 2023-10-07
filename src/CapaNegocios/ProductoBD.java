@@ -34,7 +34,7 @@ public class ProductoBD {
         sql = "SELECT pSerie,pDescripcion,pObservacion,digemi,pCondicion,catNombre,maNombre,mPresentacion,c.idcategoria,m.idmarca,me.idmedida FROM producto AS p "
                 + "INNER JOIN marca AS m ON p.idmarca=m.idmarca "
                 + "INNER JOIN medida AS me ON p.idmedida=me.idmedida "
-                + "INNER JOIN categoria AS c ON p.idcategoria=c.idcategoria LIMIT 0, 100";
+                + "INNER JOIN categoria AS c ON p.idcategoria=c.idcategoria LIMIT 0, 20";
 
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
@@ -194,7 +194,7 @@ public class ProductoBD {
                 + "INNER JOIN marca AS m ON p.idmarca=m.idmarca "
                 + "INNER JOIN medida AS me ON p.idmedida=me.idmedida "
                 + "INNER JOIN categoria AS c ON p.idcategoria=c.idcategoria "
-                + "WHERE pDescripcion LIKE ? LIMIT 0,100";
+                + "WHERE pDescripcion LIKE ? LIMIT 0,20";
 
         try {
             PreparedStatement pst = cn.prepareStatement(sql);

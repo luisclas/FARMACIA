@@ -4,20 +4,24 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Asistencia.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/ProductoBD.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/TipoUsuario_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/AsistenciaBD.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/ProveedorBD.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Compra.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/ComposicionBD.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/UsuarioBD.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/DetalleCuentasBancarias.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/DetalleCuentaBancariasBD.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Usuario_IU.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/MarcaBD.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Medida_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Login_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Marca_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Proveedor_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Turno_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Producto_IU.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/ReporteComprasVarios_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Compras_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Proveedor.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/CuentasBancariasProveedor_IU.java</file>
@@ -28,6 +32,7 @@
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/CompraBD.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/MedidaBD.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/DetalleCompra.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/DetalleCompraBD.java</file>
         </group>
     </open-files>
 </project-private>

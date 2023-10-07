@@ -9,6 +9,10 @@ import CapaDatos.Categoria;
 import CapaDatos.Proveedor;
 import CapaNegocios.CategoriaBD;
 import CapaNegocios.ProveedorBD;
+import static CapaPresentacion.MENU_IU.escritorio;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -57,7 +61,7 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
             DefaultTableModel tabla_temporal;
             ProveedorBD oProveedorBD = new ProveedorBD();
             tabla_temporal = oProveedorBD.reportarProveedor();
-            tabla_reporte_proveedor.setModel((tabla_temporal));
+            tabla_reporte_proveedor.setModel(tabla_temporal);
 
             int cant = tabla_temporal.getRowCount();
             txtCantidad.setText("" + cant);
@@ -105,6 +109,7 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
         btnEliminar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setClosable(true);
@@ -120,11 +125,121 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
 
         jLabel4.setText("DIRECCION");
 
+        txtRuc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRucFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRucFocusLost(evt);
+            }
+        });
+        txtRuc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRucKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRucKeyTyped(evt);
+            }
+        });
+
+        txtRazonSocial.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRazonSocialFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRazonSocialFocusLost(evt);
+            }
+        });
+        txtRazonSocial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRazonSocialKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRazonSocialKeyTyped(evt);
+            }
+        });
+
+        txtRepresentante.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRepresentanteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRepresentanteFocusLost(evt);
+            }
+        });
+        txtRepresentante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRepresentanteKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRepresentanteKeyTyped(evt);
+            }
+        });
+
+        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusLost(evt);
+            }
+        });
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyPressed(evt);
+            }
+        });
+
         jLabel5.setText("CORREO");
 
         jLabel6.setText("PAGINA WEB");
 
         jLabel7.setText("CELULAR");
+
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
+            }
+        });
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyPressed(evt);
+            }
+        });
+
+        txtPaginaWeb.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPaginaWebFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPaginaWebFocusLost(evt);
+            }
+        });
+        txtPaginaWeb.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPaginaWebKeyPressed(evt);
+            }
+        });
+
+        txtCelular.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCelularFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCelularFocusLost(evt);
+            }
+        });
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCelularKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
 
         tabla_reporte_proveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,12 +249,24 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla_reporte_proveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabla_reporte_proveedorMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_reporte_proveedor);
 
         btnCuentasBancarias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/cuentas.png"))); // NOI18N
         btnCuentasBancarias.setText("CUENTAS BANCARIAS");
+        btnCuentasBancarias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuentasBancariasActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("CANTIDAD");
+
+        txtCantidad.setEnabled(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -175,6 +302,7 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/report_edit.png"))); // NOI18N
         btnModificar.setText("MODIFICAR");
+        btnModificar.setEnabled(false);
         btnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +313,7 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/bin_empty.png"))); // NOI18N
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.setEnabled(false);
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -249,6 +378,11 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel9.setText("* Si deseas eliminar o modificar, primero buscas al proveedor por el RUC ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,7 +392,9 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCuentasBancarias)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(237, 237, 237)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -279,10 +415,10 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
-                        .addGap(25, 25, 25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPaginaWeb, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                             .addComponent(txtCorreo)
+                            .addComponent(txtPaginaWeb)
                             .addComponent(txtCelular)))
                     .addComponent(jScrollPane1))
                 .addGap(10, 10, 10)
@@ -318,7 +454,8 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnCuentasBancarias)
                                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8)))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5)
@@ -334,7 +471,7 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -444,8 +581,8 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
                 txtCelular.setText(tabla_temporal.getValueAt(0, 6).toString());
 
                 btnRegistrar.setEnabled(false);
-                btnModificar.setEnabled(false);
-                btnEliminar.setEnabled(false);
+                btnModificar.setEnabled(true);
+                btnEliminar.setEnabled(true);
 
             } else {
                 error("No se encontro datos...");
@@ -579,6 +716,177 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void tabla_reporte_proveedorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_reporte_proveedorMousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tabla_reporte_proveedorMousePressed
+
+    private void btnCuentasBancariasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentasBancariasActionPerformed
+        // TODO add your handling code here:
+        CuentasBancariasProveedor_IU frame = new CuentasBancariasProveedor_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_btnCuentasBancariasActionPerformed
+
+    private void txtRucFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRucFocusGained
+        // TODO add your handling code here:
+        txtRuc.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtRucFocusGained
+
+    private void txtRucFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRucFocusLost
+        // TODO add your handling code here:
+        txtRuc.setBackground(Color.white);
+    }//GEN-LAST:event_txtRucFocusLost
+
+    private void txtRazonSocialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRazonSocialFocusGained
+        // TODO add your handling code here:
+        txtRazonSocial.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtRazonSocialFocusGained
+
+    private void txtRazonSocialFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRazonSocialFocusLost
+        // TODO add your handling code here:
+        txtRazonSocial.setBackground(Color.white);
+    }//GEN-LAST:event_txtRazonSocialFocusLost
+
+    private void txtRepresentanteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepresentanteFocusGained
+        // TODO add your handling code here:
+        txtRepresentante.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtRepresentanteFocusGained
+
+    private void txtRepresentanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRepresentanteFocusLost
+        // TODO add your handling code here:
+        txtRepresentante.setBackground(Color.white);
+    }//GEN-LAST:event_txtRepresentanteFocusLost
+
+    private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
+        // TODO add your handling code here:
+        txtDireccion.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtDireccionFocusGained
+
+    private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
+        // TODO add your handling code here:
+        txtDireccion.setBackground(Color.white);
+    }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void txtCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusGained
+        // TODO add your handling code here:
+        txtCorreo.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtCorreoFocusGained
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        // TODO add your handling code here:
+        txtCorreo.setBackground(Color.white);
+    }//GEN-LAST:event_txtCorreoFocusLost
+
+    private void txtPaginaWebFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPaginaWebFocusGained
+        // TODO add your handling code here:
+        txtPaginaWeb.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtPaginaWebFocusGained
+
+    private void txtPaginaWebFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPaginaWebFocusLost
+        // TODO add your handling code here:
+        txtPaginaWeb.setBackground(Color.white);
+    }//GEN-LAST:event_txtPaginaWebFocusLost
+
+    private void txtCelularFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusGained
+        // TODO add your handling code here:
+        txtCelular.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtCelularFocusGained
+
+    private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
+        // TODO add your handling code here:
+        txtCelular.setBackground(Color.white);
+    }//GEN-LAST:event_txtCelularFocusLost
+
+    private void txtRucKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtRazonSocial.requestFocus();
+        }
+    }//GEN-LAST:event_txtRucKeyPressed
+
+    private void txtRazonSocialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonSocialKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtRepresentante.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtRazonSocialKeyPressed
+
+    private void txtRepresentanteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepresentanteKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtDireccion.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtRepresentanteKeyPressed
+
+    private void txtDireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtCorreo.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtDireccionKeyPressed
+
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtPaginaWeb.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtCorreoKeyPressed
+
+    private void txtPaginaWebKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaginaWebKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtCelular.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtPaginaWebKeyPressed
+
+    private void txtCelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            btnRegistrar.requestFocus();
+            btnRegistrar.doClick();
+            
+        }
+    }//GEN-LAST:event_txtCelularKeyPressed
+
+    private void txtRucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || txtRuc.getText().length() >= 13) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRucKeyTyped
+
+    private void txtRazonSocialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonSocialKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRazonSocialKeyTyped
+
+    private void txtRepresentanteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepresentanteKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRepresentanteKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtCelularKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -597,6 +905,7 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_reporte_proveedor;

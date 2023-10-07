@@ -5,12 +5,19 @@
  */
 package CapaPresentacion;
 
+import CapaDatos.Compra;
+import CapaDatos.DetalleCompra;
 import CapaDatos.Medida;
+import CapaNegocios.CompraBD;
+import CapaNegocios.DetalleCompraBD;
 import CapaNegocios.MedidaBD;
 import CapaNegocios.ProductoBD;
 import CapaNegocios.ProveedorBD;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -30,6 +37,12 @@ public class Compras_IU extends javax.swing.JInternalFrame {
     public Compras_IU() {
         initComponents();
         cargarMedida();
+      
+    }
+
+    private void limpiar_tabla_formulario() {
+        DefaultTableModel tabla_temporal_detalle_producto = (DefaultTableModel) tabla_reporte_detalle_productos.getModel();
+        tabla_temporal_detalle_producto.setRowCount(0);
     }
 
     private void exito(String mensaje) {
@@ -46,6 +59,7 @@ public class Compras_IU extends javax.swing.JInternalFrame {
     }
 
     private void limpiarAgregar() {
+        
         txtBarras.setText("");
         txtProducto.setText("");
         txtCantidad.setText("");
@@ -92,7 +106,31 @@ public class Compras_IU extends javax.swing.JInternalFrame {
         BigDecimal decimal_total = numero.setScale(2, RoundingMode.DOWN);
 
         txtSubTotal.setText("" + decimal_total);
-        txtTotalPagar.setText("" + decimal_total);
+        txtTotalPagar.setText("" + decimal_total);  
+        
+
+    }
+
+    private void registrarDetalleCompra(int idcompra) {
+
+        DefaultTableModel tabla_temporal_compras = (DefaultTableModel) tabla_reporte_detalle_productos.getModel();
+        int cantCompras = tabla_temporal_compras.getRowCount();
+        DetalleCompra oDetalleCompra = new DetalleCompra();
+        DetalleCompraBD odetalleCompra = new DetalleCompraBD();
+
+        for (int i = 0; i < cantCompras; i++) {
+            oDetalleCompra.setIdcompra(idcompra);
+            oDetalleCompra.setpSerie(tabla_temporal_compras.getValueAt(i, 0).toString());
+            oDetalleCompra.setDcCantidad((Double) tabla_temporal_compras.getValueAt(i, 4));
+            oDetalleCompra.setDcPrecio((Double) tabla_temporal_compras.getValueAt(i, 5));
+            oDetalleCompra.setDcImporte((Double) tabla_temporal_compras.getValueAt(i, 6));
+            oDetalleCompra.setDcLote(tabla_temporal_compras.getValueAt(i, 2).toString());
+            oDetalleCompra.setDcPresentacion(tabla_temporal_compras.getValueAt(i, 3).toString());
+
+            odetalleCompra.registrarDetalleCompra(oDetalleCompra);
+
+        }
+
     }
 
     /**
@@ -166,6 +204,7 @@ public class Compras_IU extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("DETALLE DE COMPRAS");
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DE LA COMPRA"));
 
         jLabel1.setText("TIPO COMPROBANTE");
@@ -173,20 +212,74 @@ public class Compras_IU extends javax.swing.JInternalFrame {
         jLabel2.setText("FORMA DE PAGO");
 
         cmbTipoComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "FACTURA", "BOLETA" }));
+        cmbTipoComprobante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbTipoComprobanteKeyPressed(evt);
+            }
+        });
 
         cmbFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "EFECTIVO", "TARJETA" }));
+        cmbFormaPago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbFormaPagoKeyPressed(evt);
+            }
+        });
 
         jLabel3.setText("NRO COMPROBANTE");
 
         jLabel4.setText("FECHA DE COMPRA");
+
+        txtNroComprobante.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNroComprobanteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNroComprobanteFocusLost(evt);
+            }
+        });
+        txtNroComprobante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNroComprobanteKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroComprobanteKeyTyped(evt);
+            }
+        });
+
+        dcFechaCompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                dcFechaCompraFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                dcFechaCompraFocusLost(evt);
+            }
+        });
+        dcFechaCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                dcFechaCompraKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                dcFechaCompraKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("MONEDA");
 
         jLabel6.setText("TIENDA");
 
         cmbMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "SOLES", "DOLARES" }));
+        cmbMoneda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbMonedaKeyPressed(evt);
+            }
+        });
 
         cmbTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRINCIPAL" }));
+        cmbTienda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbTiendaKeyPressed(evt);
+            }
+        });
 
         jLabel7.setText("TIPO DE PAGO");
 
@@ -255,12 +348,30 @@ public class Compras_IU extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6)
                         .addComponent(cmbTienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DE LA COMPRA"));
 
         jLabel8.setText("RUC");
+
+        txtRuc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRucFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRucFocusLost(evt);
+            }
+        });
+        txtRuc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRucKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRucKeyTyped(evt);
+            }
+        });
 
         jLabel9.setText("RAZON SOCIAL");
 
@@ -271,6 +382,11 @@ public class Compras_IU extends javax.swing.JInternalFrame {
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
+            }
+        });
+        btnBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnBuscarKeyPressed(evt);
             }
         });
 
@@ -309,6 +425,7 @@ public class Compras_IU extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/disk.png"))); // NOI18N
@@ -336,10 +453,10 @@ public class Compras_IU extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -347,18 +464,35 @@ public class Compras_IU extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel10.setText("BARRAS");
 
+        txtBarras.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBarrasFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBarrasFocusLost(evt);
+            }
+        });
         txtBarras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBarrasActionPerformed(evt);
+            }
+        });
+        txtBarras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBarrasKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBarrasKeyTyped(evt);
             }
         });
 
@@ -368,19 +502,91 @@ public class Compras_IU extends javax.swing.JInternalFrame {
 
         jLabel12.setText("PRESENTACION");
 
+        cmbMedida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbMedidaKeyPressed(evt);
+            }
+        });
+
         jLabel13.setText("LOTE");
+
+        txtLote.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtLoteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtLoteFocusLost(evt);
+            }
+        });
+        txtLote.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLoteKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLoteKeyTyped(evt);
+            }
+        });
 
         jLabel14.setText("CANTIDAD");
 
+        txtCantidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCantidadFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCantidadFocusLost(evt);
+            }
+        });
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
+
         jLabel15.setText("PRECIO");
 
+        txtPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPrecioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPrecioFocusLost(evt);
+            }
+        });
         txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPrecioKeyTyped(evt);
             }
         });
 
         jLabel16.setText("IMPORTE");
+
+        txtImporte.setEnabled(false);
+        txtImporte.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtImporteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtImporteFocusLost(evt);
+            }
+        });
+        txtImporte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtImporteKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtImporteKeyTyped(evt);
+            }
+        });
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/cart.png"))); // NOI18N
         btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -482,6 +688,8 @@ public class Compras_IU extends javax.swing.JInternalFrame {
                 "BARRAS", "PRODUCTO", "LOTE", "PRESENTACION", "CANTIDAD", "PRECIO", "IMPORTE"
             }
         ));
+        tabla_reporte_detalle_productos.setGridColor(new java.awt.Color(255, 255, 255));
+        tabla_reporte_detalle_productos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tabla_reporte_detalle_productos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tabla_reporte_detalle_productosKeyReleased(evt);
@@ -503,13 +711,71 @@ public class Compras_IU extends javax.swing.JInternalFrame {
 
         jLabel18.setText("DESCUENTO");
 
+        txtDescuento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDescuentoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDescuentoFocusLost(evt);
+            }
+        });
+        txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDescuentoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescuentoKeyTyped(evt);
+            }
+        });
+
         jLabel19.setText("SUBTOTAL CON DSCTO");
 
-        txtSubTotalDscto.setEnabled(false);
+        txtSubTotalDscto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSubTotalDsctoKeyPressed(evt);
+            }
+        });
 
         jLabel20.setText("FLETE");
 
+        txtFlete.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtFleteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFleteFocusLost(evt);
+            }
+        });
+        txtFlete.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFleteKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFleteKeyTyped(evt);
+            }
+        });
+
         jLabel21.setText("IGV");
+
+        txtIgv.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtIgvFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIgvFocusLost(evt);
+            }
+        });
+        txtIgv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIgvKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIgvKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIgvKeyTyped(evt);
+            }
+        });
 
         jLabel22.setText("TOTAL A PAGAR");
 
@@ -562,10 +828,11 @@ public class Compras_IU extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -585,10 +852,8 @@ public class Compras_IU extends javax.swing.JInternalFrame {
                             .addComponent(txtSubTotalDscto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFlete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIgv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -596,7 +861,90 @@ public class Compras_IU extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
+        int cant_producto = tabla_reporte_detalle_productos.getRowCount();
+        if (cant_producto > 0) {
+            if (txtNroComprobante.getText().length() > 0) {
+                if (txtRuc.getText().length() > 0) {
+                    if (txtRazonSocial.getText().length() > 0) {
+                        if (txtSubTotal.getText().length() > 0) {
+                            if (txtDescuento.getText().length() > 0) {
+                                if (txtSubTotalDscto.getText().length() > 0) {
+                                    if (txtFlete.getText().length() > 0) {
+                                        if (txtIgv.getText().length() > 0) {
+                                            if (dcFechaCompra.getDate() != null) {
 
+                                                Compra oCompra = new Compra();
+                                                CompraBD oCompraBD = new CompraBD();
+
+                                                SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
+                                                String fecha = dcn.format(dcFechaCompra.getDate());
+
+                                                oCompra.setCoFecha(fecha);
+                                                oCompra.setCoTipoDoc(cmbTipoComprobante.getSelectedItem().toString());
+                                                oCompra.setCoNroDoc(txtNroComprobante.getText().toUpperCase());
+                                                oCompra.setCoTipoPago(cmbTipoPago.getSelectedItem().toString());
+                                                oCompra.setCoFormaPago(cmbFormaPago.getSelectedItem().toString());
+                                                oCompra.setCoMoneda(cmbMoneda.getSelectedItem().toString());
+                                                oCompra.setCoSubTotal(Double.parseDouble(txtSubTotal.getText().trim()));
+                                                oCompra.setCoFlete(Double.parseDouble(txtFlete.getText().trim()));
+                                                oCompra.setCoIgv(Double.parseDouble(txtIgv.getText().trim()));
+                                                oCompra.setCoTotal(Double.parseDouble(txtTotalPagar.getText().trim()));
+                                                oCompra.setProvRuc(txtRuc.getText().trim());
+                                                oCompra.setuDni(Login_IU.dni_publico);
+                                                oCompra.setTienda(cmbTienda.getSelectedItem().toString());
+
+                                                int idcompra = oCompraBD.registrarCompra(oCompra);
+                                                if (idcompra > -1) {
+
+                                                    registrarDetalleCompra(idcompra);
+                                                    exito("Todo ok...");
+                                                    limpiarAgregar();
+                                                    limpiar_tabla_formulario();
+                                                } else {
+                                                    error("No se pudo realizar la compra");
+                                                }
+
+                                            } else {
+                                                advertencia("Seleccione una fecha...");
+                                                dcFechaCompra.requestFocus();
+                                            }
+
+                                        } else {
+                                            advertencia("Seleccione el igv de la compra, sino no hubiera coloque 0...");
+                                            txtIgv.requestFocus();
+                                        }
+                                    } else {
+                                        advertencia("Ingrese el flete de la compra, sino no hubiera coloque 0...");
+                                        txtFlete.requestFocus();
+                                    }
+                                } else {
+                                    advertencia("Seleccione el subtotal con descuento de la compra, sino no hubiera coloque 0...");
+                                    txtSubTotalDscto.requestFocus();
+                                }
+                            } else {
+                                advertencia("Ingrese el descuento de la compra, sino no hubiera coloque 0...");
+                                txtDescuento.requestFocus();
+                            }
+                        } else {
+                            advertencia("Ingrese el subTotal de la compra...");
+                            txtSubTotal.requestFocus();
+                        }
+                    } else {
+                        advertencia("Coloque un RUC valido...");
+                        txtRuc.requestFocus();
+                    }
+                } else {
+                    advertencia("Coloque el ruc del proveedor...");
+                    txtRuc.requestFocus();
+                }
+            } else {
+                advertencia("Ingrese el nro de comprobante de la compra...");
+                txtNroComprobante.requestFocus();
+            }
+        } else {
+            advertencia("No hay productos en la lista...");
+            txtBarras.requestFocus();
+        }
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -607,18 +955,7 @@ public class Compras_IU extends javax.swing.JInternalFrame {
 
     private void tabla_reporte_detalle_productosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabla_reporte_detalle_productosKeyReleased
         // TODO add your handling code here:
-        try {
-            double precio = Double.parseDouble(txtPrecio.getText().trim());
-            double cantidad = Double.parseDouble(txtCantidad.getText().trim());
-
-            double resultado = precio * cantidad;
-
-            BigDecimal numero = new BigDecimal(resultado);
-            BigDecimal decimales = numero.setScale(2, RoundingMode.DOWN);
-
-            txtImporte.setText("" + decimales);
-        } catch (Exception e) {
-        }
+       
     }//GEN-LAST:event_tabla_reporte_detalle_productosKeyReleased
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
@@ -724,18 +1061,341 @@ public class Compras_IU extends javax.swing.JInternalFrame {
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         // TODO add your handling code here:
-        
+
         int filaSeleccionada = tabla_reporte_detalle_productos.getSelectedRow();
         try {
             DefaultTableModel tabla_temporal_compras = (DefaultTableModel) tabla_reporte_detalle_productos.getModel();
             tabla_temporal_compras.removeRow(filaSeleccionada);
-            
+
             tabla_reporte_detalle_productos.setModel(tabla_temporal_compras);
             calcularTotal();
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Error al quitar","Error",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "Error al quitar", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnQuitarActionPerformed
+
+    private void txtPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyReleased
+        // TODO add your handling code here:
+        try {
+            double precio = Double.parseDouble(txtPrecio.getText().trim());
+            double cant = Double.parseDouble(txtCantidad.getText().trim());
+            
+            double resultado = precio * cant ;
+            
+            BigDecimal numero = new BigDecimal(resultado);
+            BigDecimal decimales = numero.setScale(2,RoundingMode.DOWN);
+            
+            txtImporte.setText("" + decimales);
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txtPrecioKeyReleased
+
+    private void txtBarrasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBarrasFocusGained
+        // TODO add your handling code here:
+        txtBarras.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtBarrasFocusGained
+
+    private void txtBarrasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBarrasFocusLost
+        // TODO add your handling code here:
+        txtBarras.setBackground(Color.white);
+    }//GEN-LAST:event_txtBarrasFocusLost
+
+    private void txtNroComprobanteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNroComprobanteFocusGained
+        // TODO add your handling code here:
+        txtNroComprobante.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtNroComprobanteFocusGained
+
+    private void txtNroComprobanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNroComprobanteFocusLost
+        // TODO add your handling code here:
+        txtNroComprobante.setBackground(Color.white);
+    }//GEN-LAST:event_txtNroComprobanteFocusLost
+
+    private void txtLoteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLoteFocusGained
+        // TODO add your handling code here:
+        txtLote.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtLoteFocusGained
+
+    private void txtLoteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLoteFocusLost
+        // TODO add your handling code here:
+        txtLote.setBackground(Color.white);
+    }//GEN-LAST:event_txtLoteFocusLost
+
+    private void txtRucFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRucFocusGained
+        // TODO add your handling code here:
+        txtRuc.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtRucFocusGained
+
+    private void txtRucFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRucFocusLost
+        // TODO add your handling code here:
+        txtRuc.setBackground(Color.white);
+    }//GEN-LAST:event_txtRucFocusLost
+
+    private void dcFechaCompraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaCompraFocusGained
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_dcFechaCompraFocusGained
+
+    private void dcFechaCompraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaCompraFocusLost
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_dcFechaCompraFocusLost
+
+    private void txtCantidadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCantidadFocusGained
+        // TODO add your handling code here:
+        txtCantidad.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtCantidadFocusGained
+
+    private void txtCantidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCantidadFocusLost
+        // TODO add your handling code here:
+        txtCantidad.setBackground(Color.white);
+    }//GEN-LAST:event_txtCantidadFocusLost
+
+    private void txtPrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioFocusGained
+        // TODO add your handling code here:
+        txtPrecio.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtPrecioFocusGained
+
+    private void txtPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioFocusLost
+        // TODO add your handling code here:
+        txtPrecio.setBackground(Color.white);
+    }//GEN-LAST:event_txtPrecioFocusLost
+
+    private void txtImporteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtImporteFocusGained
+        // TODO add your handling code here:
+        txtImporte.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtImporteFocusGained
+
+    private void txtImporteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtImporteFocusLost
+        // TODO add your handling code here:
+        txtImporte.setBackground(Color.white);
+    }//GEN-LAST:event_txtImporteFocusLost
+
+    private void txtDescuentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescuentoFocusGained
+        // TODO add your handling code here:
+        txtDescuento.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtDescuentoFocusGained
+
+    private void txtDescuentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescuentoFocusLost
+        // TODO add your handling code here:
+        txtDescuento.setBackground(Color.white); 
+    }//GEN-LAST:event_txtDescuentoFocusLost
+
+    private void txtFleteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFleteFocusGained
+        // TODO add your handling code here:
+        txtFlete.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtFleteFocusGained
+
+    private void txtFleteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFleteFocusLost
+        // TODO add your handling code here:
+        txtFlete.setBackground(Color.white);
+    }//GEN-LAST:event_txtFleteFocusLost
+
+    private void txtIgvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIgvFocusGained
+        // TODO add your handling code here:
+        txtIgv.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtIgvFocusGained
+
+    private void txtIgvFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIgvFocusLost
+        // TODO add your handling code here:
+        txtIgv.setBackground(Color.white);
+    }//GEN-LAST:event_txtIgvFocusLost
+
+    private void txtBarrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBarrasKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || txtBarras.getText().length() >= 13) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBarrasKeyTyped
+
+    private void txtNroComprobanteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroComprobanteKeyTyped
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_txtNroComprobanteKeyTyped
+
+    private void dcFechaCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcFechaCompraKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_dcFechaCompraKeyTyped
+
+    private void txtRucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || txtRuc.getText().length() >= 13) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRucKeyTyped
+
+    private void txtLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoteKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtLoteKeyTyped
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtImporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImporteKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtImporteKeyTyped
+
+    private void txtDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDescuentoKeyTyped
+
+    private void txtFleteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFleteKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFleteKeyTyped
+
+    private void txtIgvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIgvKeyTyped
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_txtIgvKeyTyped
+
+    private void cmbTipoComprobanteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbTipoComprobanteKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtNroComprobante.requestFocus();
+        } 
+    }//GEN-LAST:event_cmbTipoComprobanteKeyPressed
+
+    private void txtNroComprobanteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroComprobanteKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            cmbMoneda.requestFocus();
+            
+        } 
+    }//GEN-LAST:event_txtNroComprobanteKeyPressed
+
+    private void cmbMonedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbMonedaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            cmbFormaPago.requestFocus();
+        } 
+    }//GEN-LAST:event_cmbMonedaKeyPressed
+
+    private void cmbFormaPagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbFormaPagoKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cmbFormaPagoKeyPressed
+
+    private void dcFechaCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcFechaCompraKeyPressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_dcFechaCompraKeyPressed
+
+    private void cmbTiendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbTiendaKeyPressed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_cmbTiendaKeyPressed
+
+    private void txtRucKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            btnBuscar.doClick();
+            txtBarras.requestFocus();
+        } 
+    }//GEN-LAST:event_txtRucKeyPressed
+
+    private void txtBarrasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBarrasKeyPressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtBarrasKeyPressed
+
+    private void cmbMedidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbMedidaKeyPressed
+        // TODO add your handling code here:
+         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtLote.requestFocus();
+        } 
+    }//GEN-LAST:event_cmbMedidaKeyPressed
+
+    private void txtLoteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoteKeyPressed
+        // TODO add your handling code here:
+         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtCantidad.requestFocus();
+        } 
+    }//GEN-LAST:event_txtLoteKeyPressed
+
+    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
+        // TODO add your handling code here:
+         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtPrecio.requestFocus();
+        } 
+    }//GEN-LAST:event_txtCantidadKeyPressed
+
+    private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
+        // TODO add your handling code here:
+         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+             btnAgregar.doClick();
+             txtBarras.requestFocus();
+            
+        } 
+    }//GEN-LAST:event_txtPrecioKeyPressed
+
+    private void txtImporteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImporteKeyPressed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_txtImporteKeyPressed
+
+    private void txtDescuentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyPressed
+        // TODO add your handling code here:
+         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtSubTotalDscto.requestFocus();
+        } 
+    }//GEN-LAST:event_txtDescuentoKeyPressed
+
+    private void txtFleteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFleteKeyPressed
+        // TODO add your handling code here:
+         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtIgv.requestFocus();
+        } 
+    }//GEN-LAST:event_txtFleteKeyPressed
+
+    private void txtIgvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIgvKeyPressed
+        // TODO add your handling code here:
+         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            btnRegistrar.requestFocus();
+            btnRegistrar.doClick();
+        } 
+    }//GEN-LAST:event_txtIgvKeyPressed
+
+    private void btnBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnBuscarKeyPressed
+
+    private void txtSubTotalDsctoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSubTotalDsctoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+            txtFlete.requestFocus();
+        }
+    }//GEN-LAST:event_txtSubTotalDsctoKeyPressed
+
+    private void txtIgvKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIgvKeyReleased
+        // TODO add your handling code here:
+        
+           
+    }//GEN-LAST:event_txtIgvKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

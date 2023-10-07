@@ -29,7 +29,7 @@ public class DetalleCuentaBancariasBD {
         String[] titulos = {"ID", "BANCO", "CUENTA", "NROCUENTA","RUC"};
         String[] registros = new String[5];
         modelo = new DefaultTableModel(null, titulos);
-        sql = "SELECT idcuentas,banco,cuenta,nroCuenta,provRuc FROM detalleCuentasbancarias "
+        sql = "SELECT idcuentas,banco,cuenta,nroCuenta,provRuc FROM detallescuentasbancarias "
                 + "WHERE provRuc=?";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class DetalleCuentaBancariasBD {
      public boolean registrarDetalleCuentasBancarias(DetalleCuentasBancarias d) {
         boolean rpta = false;
 
-        sql = "INSERT INTO detallecuentasbancarias(idcuentas,banco,cuenta,nroCuenta,provRuc) VALUES(null,?,?,?,?)";
+        sql = "INSERT INTO detallescuentasbancarias(idcuentas,banco,cuenta,nroCuenta,provRuc) VALUES(null,?,?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, d.getBanco());
@@ -80,7 +80,7 @@ public class DetalleCuentaBancariasBD {
      public boolean eliminarDetalleCuentasBancarias(int idcuentas) {
         boolean rpta = false;
 
-        sql = "DELETE FROM detallecuentasbancarias WHERE idcuentas=?";
+        sql = "DELETE FROM detallescuentasbancarias WHERE idcuentas=?";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setInt(1, idcuentas);

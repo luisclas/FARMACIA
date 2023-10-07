@@ -10,6 +10,7 @@ import CapaDatos.Proveedor;
 import CapaNegocios.DetalleCuentaBancariasBD;
 import CapaNegocios.ProveedorBD;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,6 +28,7 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
      */
     public CuentasBancariasProveedor_IU() {
         initComponents();
+
     }
 
     private void limpiar_tabla_formulario() {
@@ -47,9 +49,12 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
     }
 
     public void limpiar() {
-        txtBanco.setText("");
+        txtRuc.setText("");
+        txtRazonSocial.setText("");
         txtCuenta.setText("");
         txtNroCuenta.setText("");
+        txtBanco.setText("");
+        txtRuc.requestFocus();
     }
 
     /**
@@ -165,6 +170,57 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
         jLabel4.setText("NRO CUENTA");
 
         jLabel5.setText("BANCO");
+
+        txtCuenta.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCuentaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCuentaFocusLost(evt);
+            }
+        });
+        txtCuenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCuentaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCuentaKeyTyped(evt);
+            }
+        });
+
+        txtNroCuenta.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNroCuentaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNroCuentaFocusLost(evt);
+            }
+        });
+        txtNroCuenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNroCuentaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNroCuentaKeyTyped(evt);
+            }
+        });
+
+        txtBanco.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBancoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBancoFocusLost(evt);
+            }
+        });
+        txtBanco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBancoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBancoKeyTyped(evt);
+            }
+        });
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/guardar.png"))); // NOI18N
         btnRegistrar.setText("REGISTRAR");
@@ -284,12 +340,16 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
 
     private void txtRucKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyPressed
         // TODO add your handling code here:
+       if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
+            btnBuscar.doClick();
+            txtCuenta.requestFocus();
+        }
     }//GEN-LAST:event_txtRucKeyPressed
 
     private void txtRucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || txtRuc.getText().length() >= 10) {
+        if (!Character.isDigit(c) || txtRuc.getText().length() >= 14) {
             evt.consume();
         }
     }//GEN-LAST:event_txtRucKeyTyped
@@ -326,6 +386,7 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
     private void btnBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarKeyPressed
         // TODO add your handling code here:
 
+        
     }//GEN-LAST:event_btnBuscarKeyPressed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -341,7 +402,7 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
                     oDetalleCuentasBancarias.setNroCuenta(txtNroCuenta.getText().toUpperCase().trim());
                     oDetalleCuentasBancarias.setCuenta(txtCuenta.getText().toUpperCase().trim());
                     oDetalleCuentasBancarias.setProvRuc(txtRuc.getText().toUpperCase().trim());
-                    
+
                     boolean rpta = oDetalleCuentaBancariasBD.registrarDetalleCuentasBancarias(oDetalleCuentasBancarias);
                     if (rpta) {
                         exito("Todo OK...");
@@ -349,7 +410,8 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
                         DetalleCuentaBancariasBD oCuentas = new DetalleCuentaBancariasBD();
                         tabla_temporal = oCuentas.buscarDetallesCuentasBancarias(txtRuc.getText().trim());
                         tabla_reportes_cuentas_bancarias.setModel(tabla_temporal);
-                        
+                        int cant = tabla_temporal.getRowCount();
+                        txtCantidad.setText("" + cant);
                         limpiar();
 
                     } else {
@@ -381,7 +443,7 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        
+
         int aviso = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de eliminar");
         if (aviso == 0) {
             DetalleCuentaBancariasBD oDetalleCuentaBancariasBD = new DetalleCuentaBancariasBD();
@@ -390,12 +452,85 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
                 exito("Todo OK");
                 limpiar();
                 limpiar_tabla_formulario();
-                
+
             } else {
                 error("Tiene problemas para eliminar....");
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtCuentaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCuentaFocusGained
+        // TODO add your handling code here:
+        txtCuenta.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtCuentaFocusGained
+
+    private void txtCuentaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCuentaFocusLost
+        // TODO add your handling code here:
+        txtCuenta.setBackground(Color.white);
+    }//GEN-LAST:event_txtCuentaFocusLost
+
+    private void txtNroCuentaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNroCuentaFocusGained
+        // TODO add your handling code here:
+        txtNroCuenta.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtNroCuentaFocusGained
+
+    private void txtNroCuentaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNroCuentaFocusLost
+        // TODO add your handling code here:
+        txtNroCuenta.setBackground(Color.white);
+    }//GEN-LAST:event_txtNroCuentaFocusLost
+
+    private void txtBancoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBancoFocusGained
+        // TODO add your handling code here:
+        txtBanco.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtBancoFocusGained
+
+    private void txtBancoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBancoFocusLost
+        // TODO add your handling code here:
+        txtBanco.setBackground(Color.white);
+    }//GEN-LAST:event_txtBancoFocusLost
+
+    private void txtCuentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
+            txtNroCuenta.requestFocus();
+        }
+    }//GEN-LAST:event_txtCuentaKeyPressed
+
+    private void txtNroCuentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroCuentaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
+            txtBanco.requestFocus();
+        }
+    }//GEN-LAST:event_txtNroCuentaKeyPressed
+
+    private void txtBancoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBancoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
+            btnRegistrar.requestFocus();
+            btnRegistrar.doClick();
+        }
+    }//GEN-LAST:event_txtBancoKeyPressed
+
+    private void txtCuentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuentaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCuentaKeyTyped
+
+    private void txtNroCuentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNroCuentaKeyTyped
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtNroCuentaKeyTyped
+
+    private void txtBancoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBancoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBancoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

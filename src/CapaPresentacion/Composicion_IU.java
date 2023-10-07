@@ -109,6 +109,7 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("COMPOSICION");
 
         jLabel1.setText("SERIE");
 

@@ -17,7 +17,9 @@ import CapaNegocios.MedidaBD;
 import CapaNegocios.ProductoBD;
 import CapaNegocios.TipoUsuarioBD;
 import CapaNegocios.UsuarioBD;
+import static CapaPresentacion.MENU_IU.escritorio;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -228,6 +230,9 @@ public class Producto_IU extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSerieKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSerieKeyTyped(evt);
+            }
         });
 
         txtMedida.setEnabled(false);
@@ -426,6 +431,11 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
         btnComposicion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/123456.png"))); // NOI18N
         btnComposicion.setText("COMPOSICION");
+        btnComposicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComposicionActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("CANTIDAD");
 
@@ -822,27 +832,27 @@ public class Producto_IU extends javax.swing.JInternalFrame {
                             }
 
                         } else {
-                            advertencia("Seleccione una medida");
+                            error("Seleccione una medida");
 
                         }
 
                     } else {
-                        advertencia("Seleccione un laboratorio");
+                        error("Seleccione un laboratorio");
 
                     }
 
                 } else {
-                    advertencia("Seleccione una categoria");
+                    error("Seleccione una categoria");
 
                 }
 
             } else {
-                advertencia("Ingrese la descripcion del producto");
+                error("Ingrese la descripcion del producto");
                 txtDescripcion.requestFocus();
             }
 
         } else {
-            advertencia("Ingrese el codigo del producto");
+            error("Ingrese el codigo del producto");
             txtSerie.requestFocus();
         }
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -1065,6 +1075,25 @@ public class Producto_IU extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtDigemiKeyTyped
+
+    private void btnComposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComposicionActionPerformed
+        // TODO add your handling code here:
+        Composicion_IU frame = new Composicion_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_btnComposicionActionPerformed
+
+    private void txtSerieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSerieKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSerieKeyTyped
 
     private void reportar() {
         try {
