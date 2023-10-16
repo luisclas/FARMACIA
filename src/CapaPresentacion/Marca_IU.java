@@ -117,7 +117,8 @@ public class Marca_IU extends javax.swing.JInternalFrame {
 
         txtCantidad.setEnabled(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(153, 153, 255))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(204, 0, 204))); // NOI18N
 
         jLabel4.setText("LABORATORIO");
 

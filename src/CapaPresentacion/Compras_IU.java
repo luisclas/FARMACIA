@@ -204,7 +204,7 @@ public class Compras_IU extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("DETALLE DE COMPRAS");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DE LA COMPRA"));
 
         jLabel1.setText("TIPO COMPROBANTE");
@@ -351,7 +351,7 @@ public class Compras_IU extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DE LA COMPRA"));
 
         jLabel8.setText("RUC");
@@ -469,7 +469,7 @@ public class Compras_IU extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(204, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel10.setText("BARRAS");

@@ -268,6 +268,7 @@ public class Proveedor_IU extends javax.swing.JInternalFrame {
 
         txtCantidad.setEnabled(false);
 
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/application.png"))); // NOI18N

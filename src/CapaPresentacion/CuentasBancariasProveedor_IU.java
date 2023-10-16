@@ -93,6 +93,7 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("CUENTAS BANCARIAS DEL PROVEEDOR");
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Proveedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         jLabel1.setText("RUC");

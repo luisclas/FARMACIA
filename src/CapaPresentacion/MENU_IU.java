@@ -64,6 +64,9 @@ public class MENU_IU extends javax.swing.JFrame {
         Menu_item_compras = new javax.swing.JMenuItem();
         Menu_item_compras_varios = new javax.swing.JMenuItem();
         menu_inventario = new javax.swing.JMenu();
+        menu_item_entrada_productos = new javax.swing.JMenuItem();
+        menu_item_inventario = new javax.swing.JMenuItem();
+        menu_item_modificar_precio_productos = new javax.swing.JMenuItem();
         menu_ventas = new javax.swing.JMenu();
         menu_caja = new javax.swing.JMenu();
 
@@ -265,6 +268,31 @@ public class MENU_IU extends javax.swing.JFrame {
 
         menu_inventario.setText("INVENTARIO");
         menu_inventario.setEnabled(false);
+
+        menu_item_entrada_productos.setText("Entradas de Productos");
+        menu_item_entrada_productos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_item_entrada_productosActionPerformed(evt);
+            }
+        });
+        menu_inventario.add(menu_item_entrada_productos);
+
+        menu_item_inventario.setText("Dinero en Inventario");
+        menu_item_inventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_item_inventarioActionPerformed(evt);
+            }
+        });
+        menu_inventario.add(menu_item_inventario);
+
+        menu_item_modificar_precio_productos.setText("Modificar Precio de Productos");
+        menu_item_modificar_precio_productos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_item_modificar_precio_productosActionPerformed(evt);
+            }
+        });
+        menu_inventario.add(menu_item_modificar_precio_productos);
+
         jMenuBar1.add(menu_inventario);
 
         menu_ventas.setText("VENTAS");
@@ -472,6 +500,40 @@ public class MENU_IU extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnComprasActionPerformed
 
+    private void menu_item_entrada_productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_entrada_productosActionPerformed
+        // TODO add your handling code here:
+        EntradaProductos_IU frame = new EntradaProductos_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_menu_item_entrada_productosActionPerformed
+
+    private void menu_item_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_inventarioActionPerformed
+        // TODO add your handling code here:
+        Inventario_IU frame = new Inventario_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_menu_item_inventarioActionPerformed
+
+    private void menu_item_modificar_precio_productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_modificar_precio_productosActionPerformed
+        // TODO add your handling code here:
+         ModificarPreciosProductos_IU frame = new ModificarPreciosProductos_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+                     
+    }//GEN-LAST:event_menu_item_modificar_precio_productosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -539,6 +601,9 @@ public class MENU_IU extends javax.swing.JFrame {
     public javax.swing.JMenu menu_caja;
     public javax.swing.JMenu menu_compras;
     public javax.swing.JMenu menu_inventario;
+    private javax.swing.JMenuItem menu_item_entrada_productos;
+    private javax.swing.JMenuItem menu_item_inventario;
+    private javax.swing.JMenuItem menu_item_modificar_precio_productos;
     public static javax.swing.JMenu menu_mantenimiento;
     public javax.swing.JMenu menu_ventas;
     // End of variables declaration//GEN-END:variables

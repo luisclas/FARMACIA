@@ -136,6 +136,32 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menu_item_entrada_productos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Entradas de Productos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_item_entrada_productosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menu_item_inventario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dinero en Inventario"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_item_inventarioActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menu_item_modificar_precio_productos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar Precio de Productos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_item_modificar_precio_productosActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menu_ventas">
           <Properties>

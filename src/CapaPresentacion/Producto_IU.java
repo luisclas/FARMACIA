@@ -354,6 +354,7 @@ public class Producto_IU extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Productos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(204, 51, 255))); // NOI18N
 
         jLabel9.setText("PRODUCTO");
@@ -441,6 +442,7 @@ public class Producto_IU extends javax.swing.JInternalFrame {
 
         txtCantidad.setEnabled(false);
 
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/application.png"))); // NOI18N

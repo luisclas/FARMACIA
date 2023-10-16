@@ -120,6 +120,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("TURNO");
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         jLabel1.setText("DNI");
@@ -192,6 +193,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Turno", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         jLabel3.setText("HORA DE INICIO");

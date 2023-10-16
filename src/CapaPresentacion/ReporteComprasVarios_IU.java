@@ -128,7 +128,7 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel3.setText("FECHA INICIO");
 
@@ -230,7 +230,7 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("COMPRAS POR FECHA", jPanel2);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel9.setText("FECHA INICIO");
 
@@ -337,7 +337,7 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("COMPRAS POR DOCUMENTOS", jPanel1);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel6.setText("FECHA INICIO");
 
