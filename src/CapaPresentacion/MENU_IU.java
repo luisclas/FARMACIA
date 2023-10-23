@@ -60,6 +60,7 @@ public class MENU_IU extends javax.swing.JFrame {
         Menu_item_Composicion = new javax.swing.JMenuItem();
         Menu_item_Proveedor = new javax.swing.JMenuItem();
         Menu_item_cuentas_bancarias = new javax.swing.JMenuItem();
+        Menu_item_correlativo = new javax.swing.JMenuItem();
         menu_compras = new javax.swing.JMenu();
         Menu_item_compras = new javax.swing.JMenuItem();
         Menu_item_compras_varios = new javax.swing.JMenuItem();
@@ -69,6 +70,9 @@ public class MENU_IU extends javax.swing.JFrame {
         menu_item_modificar_precio_productos = new javax.swing.JMenuItem();
         menu_ventas = new javax.swing.JMenu();
         menu_caja = new javax.swing.JMenu();
+        menu_item_egresos = new javax.swing.JMenuItem();
+        menu_item_ingreso = new javax.swing.JMenuItem();
+        menu_item_cerrar_caja = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -243,6 +247,14 @@ public class MENU_IU extends javax.swing.JFrame {
         });
         menu_mantenimiento.add(Menu_item_cuentas_bancarias);
 
+        Menu_item_correlativo.setText("Correlativo");
+        Menu_item_correlativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_item_correlativoActionPerformed(evt);
+            }
+        });
+        menu_mantenimiento.add(Menu_item_correlativo);
+
         jMenuBar1.add(menu_mantenimiento);
 
         menu_compras.setText("COMPRAS");
@@ -301,6 +313,31 @@ public class MENU_IU extends javax.swing.JFrame {
 
         menu_caja.setText("CAJA");
         menu_caja.setEnabled(false);
+
+        menu_item_egresos.setText("Egreso");
+        menu_item_egresos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_item_egresosActionPerformed(evt);
+            }
+        });
+        menu_caja.add(menu_item_egresos);
+
+        menu_item_ingreso.setText("Ingreso");
+        menu_item_ingreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_item_ingresoActionPerformed(evt);
+            }
+        });
+        menu_caja.add(menu_item_ingreso);
+
+        menu_item_cerrar_caja.setText("Ver Caja");
+        menu_item_cerrar_caja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_item_cerrar_cajaActionPerformed(evt);
+            }
+        });
+        menu_caja.add(menu_item_cerrar_caja);
+
         jMenuBar1.add(menu_caja);
 
         setJMenuBar(jMenuBar1);
@@ -524,15 +561,60 @@ public class MENU_IU extends javax.swing.JFrame {
 
     private void menu_item_modificar_precio_productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_modificar_precio_productosActionPerformed
         // TODO add your handling code here:
-         ModificarPreciosProductos_IU frame = new ModificarPreciosProductos_IU();
+        ModificarPreciosProductos_IU frame = new ModificarPreciosProductos_IU();
         escritorio.add(frame);
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = frame.getSize();
         frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
 
         frame.show();
-                     
+
     }//GEN-LAST:event_menu_item_modificar_precio_productosActionPerformed
+
+    private void Menu_item_correlativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_item_correlativoActionPerformed
+        // TODO add your handling code here:
+        Correlativo_IU frame = new Correlativo_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+
+    }//GEN-LAST:event_Menu_item_correlativoActionPerformed
+
+    private void menu_item_egresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_egresosActionPerformed
+        // TODO add your handling code here:
+        Egresos_IU frame = new Egresos_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_menu_item_egresosActionPerformed
+
+    private void menu_item_ingresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_ingresoActionPerformed
+        // TODO add your handling code here:
+        Ingresos_IU frame = new Ingresos_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_menu_item_ingresoActionPerformed
+
+    private void menu_item_cerrar_cajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_cerrar_cajaActionPerformed
+        // TODO add your handling code here:
+        Caja_IU frame = new Caja_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+        frame.show();
+    }//GEN-LAST:event_menu_item_cerrar_cajaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -579,6 +661,7 @@ public class MENU_IU extends javax.swing.JFrame {
     private javax.swing.JMenuItem Menu_item_Usuario;
     private javax.swing.JMenuItem Menu_item_compras;
     private javax.swing.JMenuItem Menu_item_compras_varios;
+    private javax.swing.JMenuItem Menu_item_correlativo;
     private javax.swing.JMenuItem Menu_item_cuentas_bancarias;
     private javax.swing.JMenuItem Menu_item_medida;
     private javax.swing.JMenuItem Menu_item_producto;
@@ -601,7 +684,10 @@ public class MENU_IU extends javax.swing.JFrame {
     public javax.swing.JMenu menu_caja;
     public javax.swing.JMenu menu_compras;
     public javax.swing.JMenu menu_inventario;
+    private javax.swing.JMenuItem menu_item_cerrar_caja;
+    private javax.swing.JMenuItem menu_item_egresos;
     private javax.swing.JMenuItem menu_item_entrada_productos;
+    private javax.swing.JMenuItem menu_item_ingreso;
     private javax.swing.JMenuItem menu_item_inventario;
     private javax.swing.JMenuItem menu_item_modificar_precio_productos;
     public static javax.swing.JMenu menu_mantenimiento;

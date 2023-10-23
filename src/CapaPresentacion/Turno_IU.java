@@ -236,7 +236,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
 
         jLabel5.setText("TURNO");
 
-        cmbTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar turno", "TURNO 1", "TURNO 2", "TURNO 3", "TURNO 4" }));
+        cmbTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar turno", "TURNO 1", "TURNO 2", "TURNO 3", "TURNO 4", "TURNO 5" }));
         cmbTurno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbTurnoKeyPressed(evt);
