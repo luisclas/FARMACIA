@@ -7,6 +7,8 @@ package CapaPresentacion;
 
 import CapaDatos.Correlativo;
 import CapaDatos.DetalleCaja;
+import CapaNegocios.AjustarColumnasJTable;
+import CapaNegocios.ColorearColumnasJTable;
 import CapaNegocios.CorrelativoBD;
 import CapaNegocios.DetalleCajaBD;
 import java.awt.Color;
@@ -39,6 +41,13 @@ public class Egresos_IU extends javax.swing.JInternalFrame {
         sacarNro();
         reportar();
         calcularTotal();
+        
+           ColorearColumnasJTable col5= new ColorearColumnasJTable(5, Color.YELLOW);
+        
+        ColorearColumnasJTable col7= new ColorearColumnasJTable(7, Color.PINK);
+        
+        tabla_reportes_egreso.getColumnModel().getColumn(5).setCellRenderer(col5);
+        tabla_reportes_egreso.getColumnModel().getColumn(7).setCellRenderer(col7);
     }
 
     private void limpiar() {
@@ -164,10 +173,15 @@ public class Egresos_IU extends javax.swing.JInternalFrame {
 
             Object[] data = {idcategoria, fecha, hora, correlativo, opcion, motivo, monto, estado};
             tabla_temporal.addRow(data);
+            
+         
+        
 
         }
 
         tabla_reportes_egreso.setModel(tabla_temporal);
+            AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reportes_egreso);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }
 
     private void actualizar_correlativo(String documento) {
@@ -627,7 +641,7 @@ public class Egresos_IU extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtMontoKeyTyped
 
     private void txtBuscarCorrelativoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCorrelativoKeyTyped
-        // TODO add your handling code here:
+          // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || c == '-')) {
             evt.consume();

@@ -235,4 +235,27 @@ public class DetalleCajaBD {
         }
 
     }
+
+    public boolean eliminarIngresoventa(int idventa) {
+        boolean rpta = false;
+        sql = "DELETE FROM  detallecaja WHERE idventa=?";
+
+        try {
+            cn = mysql.conectar();
+            PreparedStatement pst = cn.prepareStatement(sql);
+
+            pst.setInt(1, idventa);
+
+            rpta = pst.executeUpdate() == 1 ? true : false;
+
+            pst.close();
+            cn.close();
+
+            return rpta;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Error al eliminar.....", JOptionPane.ERROR_MESSAGE);
+            return rpta;
+        }
+    }
 }

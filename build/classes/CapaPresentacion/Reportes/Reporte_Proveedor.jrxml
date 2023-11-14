@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="443b77fd-ef91-48c7-b66b-f9374d146530">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT provRuc,provRazonSocial,proRepresentante,provDireccion,provCorreo,provWeb,provCelular FROM proveedor]]>
+	</queryString>
+	<field name="provRuc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provRazonSocial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="proRepresentante" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provDireccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provCorreo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provWeb" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provCelular" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="165" y="0" width="258" height="23" uuid="437c4bb6-2ac5-433c-86c0-7f82c5f7bc86"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="16"/>
+				</textElement>
+				<text><![CDATA[REPORTE PROVEEDOR]]></text>
+			</staticText>
+			<line>
+				<reportElement x="170" y="24" width="253" height="1" uuid="5bcf4ccc-b49a-4300-aabf-ee3df60eafa8"/>
+			</line>
+			<line>
+				<reportElement x="1" y="52" width="554" height="1" uuid="d63e5b4d-5d3b-4a5d-8d49-8e648d0266d8"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="59" height="20" uuid="758a5e5b-1f28-4ca5-886b-57f22a65cb2a"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="1" width="118" height="20" uuid="2c2d5ded-9ac3-49d4-b528-d24f5f8da520"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[REPRESENTANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="2" width="94" height="20" uuid="fce2aec6-9a3d-4566-8592-078dfe5e8d3e"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="1" width="112" height="20" uuid="e0cfdc55-17d9-4368-9bf2-31fb58e70f96"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[RAZON SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="1" width="133" height="20" uuid="cc11eb2c-db78-48d0-a20b-c0aeb0713c8f"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[provCelular]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="20" width="554" height="1" uuid="bbff3c03-4a1d-45c8-8eb5-3dfa3a44cb01"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="58" height="20" uuid="4d81db5f-f04e-4d87-a917-b0445d4ed0c6"/>
+				<textFieldExpression><![CDATA[$F{provRuc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="1" width="112" height="20" uuid="b0856d5d-bf9b-4ad9-8f95-c1f2135afc96"/>
+				<textFieldExpression><![CDATA[$F{provRazonSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="0" width="100" height="20" uuid="a4eb6b44-fed5-495a-a0d3-ac9c254ea6b4"/>
+				<textFieldExpression><![CDATA[$F{proRepresentante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="1" width="94" height="20" uuid="31b44b59-2081-454e-87b5-bb391fdfb6cf"/>
+				<textFieldExpression><![CDATA[$F{provDireccion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="26" width="553" height="1" uuid="4452c3d4-5217-4aa5-af9e-071f6bac5237"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="422" y="1" width="133" height="20" uuid="cb40ec1f-552b-446d-8dc8-a86f00a769d8"/>
+				<textFieldExpression><![CDATA[$F{provCelular}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="9" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="7" splitType="Stretch"/>
+	</summary>
+</jasperReport>

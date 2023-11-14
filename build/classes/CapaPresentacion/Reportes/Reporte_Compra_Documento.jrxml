@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00172901-8dc2-4d72-9fb9-11396cebb1ba">
+	<property name="ireport.zoom" value="1.652892561983471"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_inicio" class="java.lang.String"/>
+	<parameter name="fecha_final" class="java.lang.String"/>
+	<parameter name="documento" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT idcompra,coFecha,provRazonSocial,coTipoDoc,coNroDoc,coTipoPago,coFormaPago,coMoneda,coSubTotal,coFlete,coIgv,coTotal,c.provRuc,uDni,Tienda FROM compra AS c 
+INNER JOIN proveedor AS p ON c.provRuc = p.provRuc 
+WHERE (coFecha BETWEEN $P{fecha_inicio} AND $P{fecha_final} ) AND coTipoDoc=$P{documento}]]>
+	</queryString>
+	<field name="idcompra" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coFecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provRazonSocial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coTipoDoc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coNroDoc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coTipoPago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coFormaPago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coMoneda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coSubTotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coFlete" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coIgv" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="coTotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provRuc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uDni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tienda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="123" y="0" width="369" height="20" uuid="7f470435-597e-4cf8-9a36-8e312a2a52ce"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE COMPRAS POR DOCUMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="34" width="431" height="20" uuid="dac25a29-91b7-4688-b0fd-48c47d614261"/>
+				<textElement>
+					<font fontName="Calibri Light" size="12"/>
+				</textElement>
+				<text><![CDATA[El reporte de las compras por documentos se realizo con las siguientes condiciones: ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="20" uuid="91e04ee9-2103-4c7b-8737-4a56c5ca8381"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[DESDE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="40" height="16" uuid="19c1fa10-870c-4de1-8d62-a0730e905a1b"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[HASTA: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="20" width="100" height="16" uuid="ab18e1be-bfdc-4050-bf00-814c41b13007"/>
+				<textElement>
+					<font fontName="Candara Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_final}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="100" height="20" uuid="83815d68-d8f8-45c5-b538-f0c9bf267048"/>
+				<textElement>
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="265" y="0" width="66" height="20" uuid="b94ad06d-1797-4e74-a4ec-842e0b8f014b"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="37" width="555" height="1" uuid="a6b92b55-ad7e-4846-86f8-09a4fd3df60d"/>
+			</line>
+			<textField>
+				<reportElement x="331" y="0" width="100" height="20" uuid="75ffdcbb-8090-4b32-b02b-41a35e87c0b3"/>
+				<textElement>
+					<font fontName="Candara Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{documento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="1" width="64" height="20" uuid="e1198fd2-f893-4389-ab85-72cf689c1c17"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="21" width="553" height="1" uuid="9a525e64-fb8a-4d24-bc9f-33675444ad6a"/>
+			</line>
+			<staticText>
+				<reportElement x="66" y="1" width="126" height="20" uuid="4a9cc209-ca37-404f-b1c4-cb656c5f4d3c"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[RAZON SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="0" width="100" height="20" uuid="1f90191f-4014-4f6b-9fbe-ac1b7aaa6acc"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="1" width="100" height="20" uuid="1dac62a6-bdc8-45b0-92fd-b906fe85f284"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[CORRELATIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="1" width="88" height="20" uuid="697bb456-8389-4185-a972-45adb3370dae"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[TIPO PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="492" y="1" width="63" height="20" uuid="35c8f31e-4a88-4352-b45b-e92160302cca"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="66" height="20" uuid="29fe8993-3f35-4611-9cfc-e59b159a6eef"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{coFecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="0" width="126" height="20" uuid="60cd08ae-4fa9-4ca4-b767-1eb3273bf9fa"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{provRazonSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="0" width="100" height="20" uuid="ab579a87-bf38-4056-9c08-d28ebc5cc761"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{coTipoDoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="0" width="100" height="20" uuid="a60e4b0a-3fa3-469b-8f1d-f00a62c67b9a"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{coNroDoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="0" width="88" height="20" uuid="e108e6e3-f81b-4208-9dbd-f4d9dbfa9085"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{coTipoPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="75" height="20" uuid="6f757066-4b21-4685-aae7-d0661e562e0e"/>
+				<textElement>
+					<font fontName="Candara"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{coTotal}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="23" width="555" height="1" uuid="b174cfd3-44aa-4e53-affa-992e0ae9795d"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="64" height="20" uuid="9886a1ad-ac95-4654-9b40-3eba87fcebed"/>
+				<text><![CDATA[IMPRESO:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="66" y="0" width="100" height="20" uuid="0e5d69c3-8453-4ecc-bf22-89bd6847c66c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="6af1b163-15fa-4841-8930-489e31d3d4ad"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

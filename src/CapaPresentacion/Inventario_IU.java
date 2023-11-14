@@ -5,10 +5,21 @@
  */
 package CapaPresentacion;
 
+import CapaConexion.Conexion;
+import CapaNegocios.AjustarColumnasJTable;
+import CapaNegocios.ColorearColumnasJTable;
 import CapaNegocios.EntradaProductoBD;
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Connection;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -22,6 +33,13 @@ public class Inventario_IU extends javax.swing.JInternalFrame {
     public Inventario_IU() {
         initComponents();
         reportar();
+        
+        ColorearColumnasJTable col5= new ColorearColumnasJTable(5, Color.YELLOW);
+        
+        ColorearColumnasJTable col7= new ColorearColumnasJTable(7, Color.PINK);
+        
+        tabla_reporte_inventario.getColumnModel().getColumn(5).setCellRenderer(col5);
+        tabla_reporte_inventario.getColumnModel().getColumn(7).setCellRenderer(col7);
     }
 
     private void limpiar_tabla_formulario() {
@@ -81,6 +99,10 @@ public class Inventario_IU extends javax.swing.JInternalFrame {
             
              int cant = tabla_temporal.getRowCount();
             txtCantidad.setText("" + cant);
+            
+            tabla_reporte_inventario.setModel(tabla_temporal);
+            AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reporte_inventario);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         }
         
         BigDecimal numero = new BigDecimal(dinero_invertido);
@@ -156,6 +178,11 @@ public class Inventario_IU extends javax.swing.JInternalFrame {
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/impresora2.png"))); // NOI18N
         btnImprimir.setText("IMPRIMIR");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("DINERO VENDIENDO X MENOR");
 
@@ -225,6 +252,32 @@ public class Inventario_IU extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+         try {
+            Conexion msyql=new Conexion();
+            Connection cn=msyql.conectar();
+            
+            JasperReport reporte=null;
+            
+            String ruta = "src/CapaPresentacion/Reportes/Reporte_Inventario_Producto.jasper";
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(ruta);
+            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn);
+            JasperViewer jvmostrar=new JasperViewer(jprint,false);
+            
+            jvmostrar.setTitle("REPORTE DE INVENTARIO PRODUCTO");
+            jvmostrar.setVisible(true);
+            jvmostrar.setExtendedState(6);
+            
+            jvmostrar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,14 +5,22 @@
  */
 package CapaPresentacion;
 
+import CapaConexion.Conexion;
 import CapaDatos.Categoria;
+import CapaNegocios.AjustarColumnasJTable;
 import CapaNegocios.CategoriaBD;
 import CapaNegocios.MarcaBD;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -26,6 +34,8 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
     public Categoria_IU() {
         initComponents();
         reportar_categoria();
+        
+        
 
     }
 
@@ -74,6 +84,7 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
             txtCantidad.setText("" + cant);
 
             tabla_reporte_categorias.setModel(tabla_temporal);
+            AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reporte_categorias);
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         } catch (Exception ex) {
@@ -108,6 +119,7 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        btnReportar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setClosable(true);
@@ -248,6 +260,14 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/report_user_1.png"))); // NOI18N
+        btnReportar.setText("REPORTAR");
+        btnReportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,6 +299,8 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
                         .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnReportar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCerrar)))
                 .addContainerGap())
@@ -306,7 +328,8 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnCerrar))
+                    .addComponent(btnCerrar)
+                    .addComponent(btnReportar))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -489,6 +512,32 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtBuscarCategoriasKeyTyped
 
+    private void btnReportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Conexion msyql=new Conexion();
+            Connection cn=msyql.conectar();
+            
+            JasperReport reporte=null;
+            
+            String ruta = "src/CapaPresentacion/Reportes/Reporte_Categoria.jasper";
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(ruta);
+            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn);
+            JasperViewer jvmostrar=new JasperViewer(jprint,false);
+            
+            jvmostrar.setTitle("REPORTE DE CATEGORIAS");
+            jvmostrar.setVisible(true);
+            jvmostrar.setExtendedState(6);
+            
+            jvmostrar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnReportarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
@@ -496,6 +545,7 @@ public class Categoria_IU extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnReportar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

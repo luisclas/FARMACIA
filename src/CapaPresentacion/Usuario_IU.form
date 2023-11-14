@@ -30,15 +30,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtnombres" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtapellidos" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtdireccion" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtclave" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtcelular" alignment="0" max="32767" attributes="0"/>
                   <Component id="cmbTipoUsuario" alignment="0" max="32767" attributes="0"/>
                   <Component id="cmbTienda" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtdni" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -47,9 +44,13 @@
                       <Component id="btneliminar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnimprimir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnReportar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btncerrar" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="txtnombres" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtapellidos" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -60,13 +61,13 @@
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtdni" alignment="0" min="-2" pref="599" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="466" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="txtId_TIPO_USUARIO" min="-2" pref="249" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -74,11 +75,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtcantidad" min="-2" pref="68" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtbuscar_apellidos" min="-2" pref="456" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="459" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="394" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -133,6 +135,7 @@
                           <Component id="btneliminar" min="-2" max="-2" attributes="0"/>
                           <Component id="btncerrar" min="-2" max="-2" attributes="0"/>
                           <Component id="btnimprimir" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnReportar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -145,7 +148,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -419,6 +422,19 @@
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtcantidadFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtcantidadFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnReportar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/Imagenes/report_user.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="REPORTAR"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="verticalTextPosition" type="int" value="3"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

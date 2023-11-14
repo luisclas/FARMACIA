@@ -5,12 +5,21 @@
  */
 package CapaPresentacion;
 
+import CapaConexion.Conexion;
 import CapaDatos.Marca;
+import CapaNegocios.AjustarColumnasJTable;
 import CapaNegocios.MarcaBD;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -49,6 +58,10 @@ public class Marca_IU extends javax.swing.JInternalFrame {
             tabla_reporte_marca.setModel(tabla_temporal);
             int cant = tabla_temporal.getRowCount();
             txtCantidad.setText("" + cant);
+            
+            tabla_reporte_marca.setModel(tabla_temporal);
+            AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reporte_marca);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -83,6 +96,7 @@ public class Marca_IU extends javax.swing.JInternalFrame {
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        btnReportar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setClosable(true);
@@ -212,6 +226,14 @@ public class Marca_IU extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/report_user_1.png"))); // NOI18N
+        btnReportar.setText("REPORTAR");
+        btnReportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -242,7 +264,9 @@ public class Marca_IU extends javax.swing.JInternalFrame {
                         .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnReportar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(btnCerrar)))
                 .addContainerGap())
         );
@@ -269,7 +293,8 @@ public class Marca_IU extends javax.swing.JInternalFrame {
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnCerrar))
+                    .addComponent(btnCerrar)
+                    .addComponent(btnReportar))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -440,6 +465,33 @@ public class Marca_IU extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
+    private void btnReportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportarActionPerformed
+        // TODO add your handling code here:
+         try {
+            Conexion msyql=new Conexion();
+            Connection cn=msyql.conectar();
+            
+            JasperReport reporte=null;
+            
+            String ruta = "src/CapaPresentacion/Reportes/Reporte_Marca.jasper";
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(ruta);
+            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn);
+            JasperViewer jvmostrar=new JasperViewer(jprint,false);
+            
+            jvmostrar.setTitle("REPORTE DE MARCA");
+            jvmostrar.setVisible(true);
+            jvmostrar.setExtendedState(6);
+            
+            jvmostrar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_btnReportarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
@@ -447,6 +499,7 @@ public class Marca_IU extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnReportar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

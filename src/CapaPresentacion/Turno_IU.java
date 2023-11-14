@@ -6,6 +6,7 @@
 package CapaPresentacion;
 
 import CapaDatos.Turno;
+import CapaNegocios.AjustarColumnasJTable;
 import CapaNegocios.TurnoBD;
 import CapaNegocios.UsuarioBD;
 import java.awt.Color;
@@ -77,6 +78,10 @@ public class Turno_IU extends javax.swing.JInternalFrame {
 
             }
             tabla_reporte_turno.setModel(tabla_temporal_turno);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            
+            tabla_reporte_turno.setModel(tabla_temporal);
+            AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reporte_turno);
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         } catch (Exception ex) {

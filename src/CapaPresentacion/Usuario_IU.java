@@ -5,17 +5,26 @@
  */
 package CapaPresentacion;
 
+import CapaConexion.Conexion;
 import CapaDatos.TipoUsuario;
 import CapaDatos.Usuario;
+import CapaNegocios.AjustarColumnasJTable;
 import CapaNegocios.TipoUsuarioBD;
 import CapaNegocios.UsuarioBD;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -66,6 +75,10 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
             int cantLista = tabla_temporal.getRowCount();
             txtcantidad.setText("" + cantLista);
 
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            
+            tabla_reporte_usuario.setModel(tabla_temporal);
+            AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reporte_usuario);
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         } catch (Exception ex) {
@@ -136,6 +149,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         txtId_TIPO_USUARIO = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtcantidad = new javax.swing.JTextField();
+        btnReportar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setClosable(true);
@@ -386,21 +400,28 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/report_user.png"))); // NOI18N
+        btnReportar.setText("REPORTAR");
+        btnReportar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReportar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtnombres)
-                    .addComponent(txtapellidos)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtdireccion)
                     .addComponent(txtclave)
                     .addComponent(txtcelular)
                     .addComponent(cmbTipoUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbTienda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtdni)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnRegistrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -409,8 +430,12 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                         .addComponent(btneliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnimprimir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnReportar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btncerrar))
+                    .addComponent(txtnombres)
+                    .addComponent(txtapellidos)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -420,22 +445,23 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(466, 466, 466)))
-                .addGap(10, 10, 10)
+                            .addComponent(jLabel8)
+                            .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtId_TIPO_USUARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtbuscar_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 459, Short.MAX_VALUE)))
+                        .addGap(0, 394, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -484,7 +510,8 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                             .addComponent(btnmodificar)
                             .addComponent(btneliminar)
                             .addComponent(btncerrar)
-                            .addComponent(btnimprimir)))
+                            .addComponent(btnimprimir)
+                            .addComponent(btnReportar)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -492,7 +519,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                             .addComponent(txtId_TIPO_USUARIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
                             .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -931,9 +958,36 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_txtbuscar_apellidosActionPerformed
 
+    private void btnReportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportarActionPerformed
+        // TODO add your handling code here:
+         try {
+            Conexion msyql=new Conexion();
+            Connection cn=msyql.conectar();
+            
+            JasperReport reporte=null;
+            
+            String ruta = "src/CapaPresentacion/Reportes/Reporte_Usuario.jasper";
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(ruta);
+            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn);
+            JasperViewer jvmostrar=new JasperViewer(jprint,false);
+            
+            jvmostrar.setTitle("REPORTE DE USUARIO");
+            jvmostrar.setVisible(true);
+            jvmostrar.setExtendedState(6);
+            
+            jvmostrar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnReportarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnReportar;
     private javax.swing.JButton btncerrar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnimprimir;

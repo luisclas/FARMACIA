@@ -7,6 +7,7 @@ package CapaPresentacion;
 
 import CapaDatos.Categoria;
 import CapaDatos.Correlativo;
+import CapaNegocios.AjustarColumnasJTable;
 import CapaNegocios.CategoriaBD;
 import CapaNegocios.CorrelativoBD;
 import java.awt.Color;
@@ -82,6 +83,10 @@ public class Correlativo_IU extends javax.swing.JInternalFrame {
             }
 
             tabla_reportes_correlativos.setModel(tabla_temporal_correlativo);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            
+            tabla_reportes_correlativos.setModel(tabla_temporal_correlativo);
+            AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reportes_correlativos);
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         } catch (Exception ex) {

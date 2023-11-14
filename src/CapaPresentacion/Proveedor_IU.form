@@ -28,14 +28,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="btnCuentasBancarias" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="142" max="32767" attributes="0"/>
+                      <EmptySpace pref="168" max="32767" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtCantidad" min="-2" pref="93" max="-2" attributes="0"/>
@@ -62,7 +62,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtCorreo" max="32767" attributes="0"/>
+                          <Component id="txtCorreo" pref="542" max="32767" attributes="0"/>
                           <Component id="txtPaginaWeb" max="32767" attributes="0"/>
                           <Component id="txtCelular" max="32767" attributes="0"/>
                       </Group>
@@ -79,8 +79,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtRuc" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -103,14 +103,7 @@
                                   <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="483" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnCuentasBancarias" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -129,13 +122,17 @@
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnCuentasBancarias" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanel2" min="-2" pref="662" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -318,16 +315,17 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnCerrar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="btnLimpiar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="btnRegistrar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="btnBuscar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="btnModificar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="btnEliminar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="btnImprimir" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnCerrar" pref="105" max="32767" attributes="0"/>
+                      <Component id="btnLimpiar" alignment="0" pref="105" max="32767" attributes="0"/>
+                      <Component id="btnRegistrar" alignment="0" pref="105" max="32767" attributes="0"/>
+                      <Component id="btnBuscar" alignment="0" pref="105" max="32767" attributes="0"/>
+                      <Component id="btnModificar" alignment="0" pref="105" max="32767" attributes="0"/>
+                      <Component id="btnEliminar" alignment="0" pref="105" max="32767" attributes="0"/>
+                      <Component id="btnImprimir" alignment="0" pref="105" max="32767" attributes="0"/>
+                      <Component id="btnReportar" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -346,9 +344,11 @@
                   <Component id="btnLimpiar" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnImprimir" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnReportar" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace pref="53" max="32767" attributes="0"/>
                   <Component id="btnCerrar" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -445,6 +445,19 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImprimirActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnReportar">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/Imagenes/report_user.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="REPORTAR"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

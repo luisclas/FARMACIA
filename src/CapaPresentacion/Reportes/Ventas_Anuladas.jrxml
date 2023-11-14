@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c0b3d0fe-4054-45c6-b7e2-006f5b6e9598">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_inicio" class="java.lang.String"/>
+	<parameter name="fecha_final" class="java.lang.String"/>
+	<parameter name="tienda" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT idventa,DATE_FORMAT(vFecha,'%Y-%m-%d') AS fecha,DATE_FORMAT(vHora,'%H:%i:%s') AS 
+hora,vDocumento,vCorrelativo,vTipoPago,vFormaPago,vEstado,vMoneda,vSubTotal,vIgv,vTotalPagar,vPagoCon,vVuelto,v.cliRuc_Dni,c.cliDatos,uDni,tienda 
+FROM venta AS v 
+INNER JOIN cliente AS c ON v.cliRuc_Dni=c.cliRuc_Dni 
+WHERE (vFecha BETWEEN $P{fecha_inicio} AND $P{fecha_final}) AND vTipoPago="CONTADO"  AND vEstado="ANULADO" AND tienda=$P{tienda}]]>
+	</queryString>
+	<field name="idventa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="hora" class="java.lang.String"/>
+	<field name="vDocumento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vCorrelativo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vTipoPago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vFormaPago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vEstado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vMoneda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vSubTotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vIgv" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vTotalPagar" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vPagoCon" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vVuelto" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliRuc_Dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliDatos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uDni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tienda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="167" y="10" width="193" height="20" uuid="706ac797-5b87-411d-b2c6-51c89701aced"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[VENTAS ANULADAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="259" height="20" uuid="77954483-4674-4a9b-938f-f39655aa3e44"/>
+				<textElement>
+					<font fontName="Candara Light" size="12"/>
+				</textElement>
+				<text><![CDATA[El reporte de las ventas son por estado anulados:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="45" height="20" uuid="a72d45de-0f05-4a8a-94ef-9830a0928ad3"/>
+				<textElement>
+					<font fontName="Candara" size="12"/>
+				</textElement>
+				<text><![CDATA[DESDE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="21" width="45" height="20" uuid="edb9b56d-c670-4cdc-9053-8b1675deabf9"/>
+				<textElement>
+					<font fontName="Candara" size="12"/>
+				</textElement>
+				<text><![CDATA[HASTA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="46" y="1" width="100" height="20" uuid="22d61c9c-45c8-4a47-b4bc-363ce146a325"/>
+				<textElement>
+					<font fontName="Candara" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="21" width="100" height="20" uuid="48761e6a-5c42-40d7-839c-d56a03a8239c"/>
+				<textElement>
+					<font fontName="Candara" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_final}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="197" y="1" width="48" height="20" uuid="4d04eadc-b5d3-4638-a76c-0650ef6e4afd"/>
+				<textElement>
+					<font fontName="Candara" size="10"/>
+				</textElement>
+				<text><![CDATA[TIENDA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="245" y="2" width="100" height="20" uuid="a61a77f0-16f4-4711-a2de-10ced3c2f070"/>
+				<textElement>
+					<font fontName="Candara" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tienda}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="42" width="554" height="1" uuid="173b7c70-e247-4f2a-b625-10252b231ba5"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="55" height="20" uuid="7e086789-2a50-4dc2-a38a-55932c2cf15a"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="1" width="49" height="20" uuid="854ed073-6c84-4963-a994-3280a0fb930c"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[HORA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="1" width="173" height="20" uuid="c3ca37ff-24b8-4201-8ea9-dd5d4980fbd1"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="1" width="79" height="20" uuid="14dbbc07-ee67-4691-934a-64d9578560d9"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="1" width="74" height="20" uuid="e25e85d8-c48a-4e53-bfa4-2fc0e02ce397"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[CORRELATIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="1" width="60" height="20" uuid="a3021fed-838e-4b3d-b840-59664f1a738d"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="492" y="1" width="63" height="20" uuid="fab33c93-a8fe-45ad-9895-edb1e5faa1a2"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="22" width="553" height="1" uuid="32ba3e43-b865-4a4e-808b-1a7df82dc25b"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="56" height="20" uuid="45644a94-4a56-42bb-b69d-8b7dea626797"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="0" width="49" height="20" uuid="1e909d49-c9e8-40ff-b254-55ab6d34a285"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="0" width="173" height="20" uuid="c5900333-670d-4b43-a47c-7bff4d65ef29"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliDatos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="78" height="20" uuid="818b7169-824b-4905-830c-4b40a13ca57f"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vDocumento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="357" y="0" width="74" height="20" uuid="ad8a52f7-3e18-428a-9ee1-4b57f7ea7c40"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vCorrelativo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="0" width="60" height="20" uuid="872e3c51-b155-4e55-b3ea-4cf5b8308976"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vEstado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="0" width="63" height="20" uuid="fd33e655-1011-42cb-b809-8b5c3801b077"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vTotalPagar}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="20" width="550" height="1" uuid="709c6135-ac71-45dd-8bd9-1f3c0130f1b9"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="5" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="7" splitType="Stretch"/>
+	</summary>
+</jasperReport>

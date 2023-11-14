@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d2cac06-1895-4b57-9147-4610cee62fc3">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT idmedida,mPresentacion,mEquivalencia FROM medida]]>
+	</queryString>
+	<field name="idmedida" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mPresentacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mEquivalencia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="157" y="0" width="179" height="23" uuid="3c28f3ba-b29f-4c78-a0ba-465d1142dc3b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="16"/>
+				</textElement>
+				<text><![CDATA[REPORTE MEDIDA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="159" y="22" width="177" height="1" uuid="4daec590-468d-474b-af6c-efdc9bd126e7"/>
+			</line>
+			<line>
+				<reportElement x="0" y="46" width="555" height="1" uuid="37fea3b5-48af-46ae-a517-1125e9cffda6"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="6" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="88b214cd-0d3a-4903-a140-492c21f0180d"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[MEDIDA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="3046a99a-9844-43e6-8e8d-2ce279384102"/>
+			</line>
+			<staticText>
+				<reportElement x="128" y="1" width="113" height="20" uuid="8afc8291-8412-46d5-b11a-aac36c1a792c"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[PRESENTACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="1" width="113" height="20" uuid="829e78c9-c613-4353-9e37-65d659c4c0cc"/>
+				<textElement>
+					<font fontName="Arial Black" size="12"/>
+				</textElement>
+				<text><![CDATA[EQUIVALENCIA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="1a4d07d9-a994-49ec-b008-65b6e2003cb0"/>
+				<textFieldExpression><![CDATA[$F{idmedida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="128" y="2" width="100" height="20" uuid="bf8447af-870d-420d-8cbb-c543416ba95c"/>
+				<textFieldExpression><![CDATA[$F{mPresentacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="2" width="100" height="20" uuid="7a5aeffa-5286-43b8-a5af-02e9f3b3fd17"/>
+				<textFieldExpression><![CDATA[$F{mEquivalencia}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="27" width="555" height="1" uuid="6778987e-868f-46f5-9d09-bc8c48c94d5e"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="3" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="3" splitType="Stretch"/>
+	</summary>
+</jasperReport>

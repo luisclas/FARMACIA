@@ -3,54 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Asistencia.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/ProductoBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/TipoUsuario_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/AsistenciaBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Kardex.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/ProveedorBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Compra.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/ComposicionBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/UsuarioBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/DetalleCuentasBancarias.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/DetalleCuentaBancariasBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Usuario_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/MarcaBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Medida_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Login_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/CorrelativoBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Marca_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/CajaBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Proveedor_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Turno_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Producto_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/ReporteComprasVarios_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Caja.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/TurnoBD.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/AnularVenta_IU.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/DetalleCajaBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Inventario_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Correlativo.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Compras_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Proveedor.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/CuentasBancariasProveedor_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Composicion_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Categoria_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/EntradaProductos_IU.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/DetalleVentaBD.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/DetalleDeudaBD.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Deuda.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/DetalleVenta.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/MENU_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/DetalleCaja.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Caja_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/CategoriaBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/KardexBD.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/Venta.java</file>
             <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/EntradaProductoBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/CompraBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/MedidaBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Egresos_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Ingresos_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Correlativo_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/DetalleCompra.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/DetalleCompraBD.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/ModificarPreciosProductos_IU.java</file>
-            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/EntradaProducto.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Login_IU.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Reportes/Imprimir_Comprobante.jrxml</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Venta_IU.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Reportes/Reporte_Ventas_Contado.jrxml</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/ReportesVentasVarios_IU.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Reportes/Reportes_ventas_Documentos.jrxml</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/VentaBD.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaDatos/DetalleDeuda.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaNegocios/DeudaBD.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Pedidos_IU.java</file>
+            <file>file:/D:/PROYECTO%20JAVA/FARMACIAA/src/CapaPresentacion/Reportes/Ventas_Anuladas.jrxml</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,7 @@ package CapaPresentacion;
 
 import CapaDatos.DetalleCuentasBancarias;
 import CapaDatos.Proveedor;
+import CapaNegocios.ColorearColumnasJTable;
 import CapaNegocios.DetalleCuentaBancariasBD;
 import CapaNegocios.ProveedorBD;
 import java.awt.Color;
@@ -28,7 +29,8 @@ public class CuentasBancariasProveedor_IU extends javax.swing.JInternalFrame {
      */
     public CuentasBancariasProveedor_IU() {
         initComponents();
-
+        
+         
     }
 
     private void limpiar_tabla_formulario() {

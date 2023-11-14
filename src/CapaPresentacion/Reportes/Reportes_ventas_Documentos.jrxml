@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e540e580-2fed-471d-a833-36ef4bbdfc82">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_inicio" class="java.lang.String"/>
+	<parameter name="fecha_final" class="java.lang.String"/>
+	<parameter name="documento" class="java.lang.String"/>
+	<parameter name="tienda" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT idventa, DATE_FORMAT(vFecha,'%Y-%m-%d') AS fecha,DATE_FORMAT(vHora,'%H:%i:%s') AS 
+hora,vDocumento,vCorrelativo,vTipoPago,vFormaPago,vEstado,vMoneda,vSubTotal,vIgv,vTotalPagar,vPagoCon,vVuelto,v.cliRuc_Dni,cliDatos,uDni,tienda
+FROM venta AS v
+INNER JOIN cliente AS c ON v.cliRuc_Dni=c.cliRuc_Dni
+WHERE (vFecha BETWEEN $P{fecha_inicio} AND $P{fecha_final})AND vDocumento=$P{documento} AND vEstado= "ATENDIDO" AND tienda=$P{tienda}]]>
+	</queryString>
+	<field name="idventa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="hora" class="java.lang.String"/>
+	<field name="vDocumento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vCorrelativo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vTipoPago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vFormaPago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vEstado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vMoneda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vSubTotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vIgv" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vTotalPagar" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vPagoCon" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vVuelto" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliRuc_Dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliDatos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uDni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tienda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="182" y="38" width="197" height="20" uuid="2111f7fa-061b-40ea-8c6a-1a46643aae44"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE VENTAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="59" width="235" height="20" uuid="beba7d5c-1366-475f-8c85-d901c9d7e222"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<text><![CDATA[El reporte de las ventas son por estado anulados:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="21" width="47" height="20" uuid="63296d02-d626-4e1c-a297-a6a907985ca2"/>
+				<textElement>
+					<font fontName="Candara Light" size="12"/>
+				</textElement>
+				<text><![CDATA[HASTA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="21" width="100" height="20" uuid="8b59b80f-8ba6-4653-83e5-f4024c146bcc"/>
+				<textElement>
+					<font fontName="Candara Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_final}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="1" width="100" height="20" uuid="cb005e60-fc21-4157-b58e-b02be5833a3d"/>
+				<textElement>
+					<font fontName="Candara Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="1" width="47" height="20" uuid="90ef5dfd-59a4-4975-be53-d1ecdc0b4682"/>
+				<textElement>
+					<font fontName="Candara Light" size="12"/>
+				</textElement>
+				<text><![CDATA[DESDE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="22" width="100" height="20" uuid="44c03ba7-4bde-4e1f-919d-6c204108256d"/>
+				<textElement>
+					<font fontName="Candara Light" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tienda}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="230" y="22" width="74" height="20" uuid="25f16ae0-7a18-43c0-939b-7aaf4e900855"/>
+				<textElement>
+					<font fontName="Candara Light" size="12"/>
+				</textElement>
+				<text><![CDATA[TIENDA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="2" width="74" height="20" uuid="3b71b72d-dae3-48bd-a866-2230b6f89328"/>
+				<textElement>
+					<font fontName="Candara Light" size="12"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="2" width="100" height="20" uuid="c06bb44b-6054-43a7-98b6-7a0f2cc46120"/>
+				<textElement>
+					<font fontName="Candara Light" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{documento}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="42" width="554" height="1" uuid="a13517a4-0375-4f20-ad02-5153dc046018"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="59" height="20" uuid="372120ac-84b2-4bc3-a3be-4260893c95fe"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="22" width="554" height="1" uuid="7274f18d-83b7-4162-a715-fe885b6569a0"/>
+			</line>
+			<staticText>
+				<reportElement x="60" y="1" width="55" height="20" uuid="b6a3063c-75e2-44a8-9c22-c81f990bd10e"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[HORA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="1" width="164" height="20" uuid="c37ff150-4d73-4700-a43c-55b84e877fc3"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="1" width="77" height="20" uuid="bd4e97d6-2abb-48d1-8921-9a9d080561be"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="1" width="67" height="20" uuid="d2ace159-9997-4e6c-aed8-41e3385a73e9"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[TIPOPAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="0" width="76" height="20" uuid="1d692226-b488-4c1b-ba4f-db0ec02312d6"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[CORRELATIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="1" width="55" height="20" uuid="fa977e88-c8af-4f0c-a4d3-c40d3aa4e9ee"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="1" width="58" height="20" uuid="cd8bdb19-2e0f-47a9-a040-3c2152317847"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="1" width="55" height="20" uuid="3d37cc8f-7452-4e6e-bd30-44a95279d48f"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="1" width="164" height="20" uuid="a1372842-d01e-477d-9884-1ab2d3ae4874"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliDatos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="1" width="77" height="20" uuid="efc1e566-8032-4a90-97d4-4a95212e7ca8"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vDocumento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="2" width="67" height="20" uuid="3f022993-f020-4f6e-af22-4769ec1d0c49"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vTipoPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="357" y="1" width="76" height="20" uuid="3f5c9e50-f33f-4ac0-a2e7-b2810ac943cf"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vCorrelativo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="0" width="55" height="20" uuid="67f3da58-5d0d-4217-929c-1ca3189197f8"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vTotalPagar}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="22" width="553" height="1" uuid="6951c6bf-05f4-4b52-9b06-b17ff8506644"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="60" y="0" width="100" height="20" uuid="8ff12029-f840-4af7-82d4-08477ac483eb"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="0" width="58" height="20" uuid="7225c064-96ec-43ab-b1e3-2309170157fe"/>
+				<textElement>
+					<font fontName="Candara Light" size="10"/>
+				</textElement>
+				<text><![CDATA[IMPRESO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="a13fdb11-af80-4880-989b-7bc6bb1f130c"/>
+				<textElement>
+					<font fontName="Candara Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

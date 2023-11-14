@@ -8,6 +8,7 @@ package CapaPresentacion;
 import CapaDatos.EntradaProducto;
 import CapaDatos.Kardex;
 import CapaDatos.Medida;
+import CapaNegocios.ColorearColumnasJTable;
 import CapaNegocios.EntradaProductoBD;
 import CapaNegocios.KardexBD;
 import CapaNegocios.MedidaBD;
@@ -40,6 +41,13 @@ public class EntradaProductos_IU extends javax.swing.JInternalFrame {
         sacarHora();
         cargarMedida();
         sacarFecha();
+        
+           ColorearColumnasJTable col5= new ColorearColumnasJTable(5, Color.YELLOW);
+        
+        ColorearColumnasJTable col7= new ColorearColumnasJTable(7, Color.PINK);
+        
+        tabla_entrada_productos.getColumnModel().getColumn(5).setCellRenderer(col5);
+        tabla_entrada_productos.getColumnModel().getColumn(7).setCellRenderer(col7);
     }
 
     private void cargarMedida() {

@@ -5,16 +5,28 @@
  */
 package CapaPresentacion;
 
+import CapaConexion.Conexion;
+import CapaNegocios.ColorearColumnasJTable;
 import CapaNegocios.CompraBD;
 import CapaNegocios.DetalleCompraBD;
 import CapaNegocios.ProveedorBD;
+import java.io.InputStream;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -30,6 +42,13 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
     public ReporteComprasVarios_IU() {
         initComponents();
         cargarProveedores();
+
+        ColorearColumnasJTable col5 = new ColorearColumnasJTable(5, Color.YELLOW);
+
+        ColorearColumnasJTable col7 = new ColorearColumnasJTable(7, Color.PINK);
+
+        tabla_reporte_compras.getColumnModel().getColumn(5).setCellRenderer(col5);
+        tabla_reporte_compras.getColumnModel().getColumn(7).setCellRenderer(col7);
     }
 
     private void cargarProveedores() {
@@ -171,6 +190,11 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/impresora1.png"))); // NOI18N
         btnImprimir.setText("IMPRIMIR");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/eliminar2.png"))); // NOI18N
         btnEliminar.setText("ELIMINAR");
@@ -221,7 +245,7 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 11, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnBuscarComprasFechas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -280,6 +304,11 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
 
         btnImprimirDocumentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/impresora1.png"))); // NOI18N
         btnImprimirDocumentos.setText("IMPRIMIR");
+        btnImprimirDocumentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirDocumentosActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("TOTAL COMPRAS");
 
@@ -369,6 +398,11 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
 
         btnImprimirComprasProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenes/impresora1.png"))); // NOI18N
         btnImprimirComprasProveedor.setText("IMPRIMIR");
+        btnImprimirComprasProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirComprasProveedorActionPerformed(evt);
+            }
+        });
 
         cmbProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -704,97 +738,240 @@ public class ReporteComprasVarios_IU extends javax.swing.JInternalFrame {
 
     private void dcFechaInicioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaInicioFocusGained
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_dcFechaInicioFocusGained
 
     private void dcFechaInicioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaInicioFocusLost
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_dcFechaInicioFocusLost
 
     private void dcFechaFinalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaFinalFocusGained
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_dcFechaFinalFocusGained
 
     private void dcFechaFinalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaFinalFocusLost
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_dcFechaFinalFocusLost
 
     private void dcFechaInicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcFechaInicioKeyPressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_dcFechaInicioKeyPressed
 
     private void dcFechaFinalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcFechaFinalKeyPressed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_dcFechaFinalKeyPressed
 
     private void dcFechaInicioDocumentosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaInicioDocumentosFocusGained
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_dcFechaInicioDocumentosFocusGained
 
     private void dcFechaInicioDocumentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaInicioDocumentosFocusLost
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_dcFechaInicioDocumentosFocusLost
 
     private void dcFechaFinalDocumentosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaFinalDocumentosFocusGained
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_dcFechaFinalDocumentosFocusGained
 
     private void dcFechaFinalDocumentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaFinalDocumentosFocusLost
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_dcFechaFinalDocumentosFocusLost
 
     private void dcFechaInicioDocumentosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcFechaInicioDocumentosKeyPressed
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_dcFechaInicioDocumentosKeyPressed
 
     private void dcFechaFinalDocumentosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcFechaFinalDocumentosKeyPressed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_dcFechaFinalDocumentosKeyPressed
 
     private void cmbDocumentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbDocumentoKeyPressed
         // TODO add your handling code here:
-        if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+        if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
             btnBuscarDocumentos.requestFocus();
             btnBuscarDocumentos.doClick();
-            
+
         }
     }//GEN-LAST:event_cmbDocumentoKeyPressed
 
     private void dcFechaInicioProveedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dcFechaInicioProveedorFocusGained
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_dcFechaInicioProveedorFocusGained
 
     private void dcFechaInicioProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcFechaInicioProveedorKeyPressed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_dcFechaInicioProveedorKeyPressed
 
     private void dcFechaFinalproveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dcFechaFinalproveedorKeyPressed
         // TODO add your handling code here:
-         
+
     }//GEN-LAST:event_dcFechaFinalproveedorKeyPressed
 
     private void cmbProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbProveedorKeyPressed
         // TODO add your handling code here:
-         if (evt.getExtendedKeyCode() ==KeyEvent.VK_ENTER) {
+        if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
             btnBuscarComprasproveedor.requestFocus();
             btnBuscarComprasproveedor.doClick();
-         
-            
+
         }
     }//GEN-LAST:event_cmbProveedorKeyPressed
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            Conexion msyql = new Conexion();
+            Connection cn = msyql.conectar();
+
+            SimpleDateFormat dcn = new SimpleDateFormat("yyy-MM-dd");
+
+            if (dcFechaFinal.getDate() != null) {
+                if (dcFechaInicio.getDate() != null) {
+
+                    JasperReport reporte = null;
+                    InputStream reportStream;
+
+                    String ruta = "/CapaPresentacion/Reportes/Reporte_Compras_Fecha.jasper";
+
+                    Map parametro = new HashMap();
+                    parametro.clear();
+                    parametro.put("Fecha_inicio", dcn.format(dcFechaInicio.getDate()));
+                    parametro.put("Fecha_Final", dcn.format(dcFechaFinal.getDate()));
+
+                    reportStream = ReporteComprasVarios_IU.class.getResourceAsStream(ruta);
+                    reporte = (JasperReport) JRLoader.loadObject(reportStream);
+
+                    JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, cn);
+                    JasperViewer jvmostrar = new JasperViewer(jprint, false);
+
+                    jvmostrar.setTitle("REPORTE DE COMPRAS POR FECHAS");
+                    jvmostrar.setVisible(true);
+                    jvmostrar.setExtendedState(6);
+
+                    jvmostrar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                } else {
+                    advertencia("Ingrese la fecha de inicio...");
+                }
+            } else {
+                advertencia("Ingrese la fecha final...");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void btnImprimirDocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirDocumentosActionPerformed
+        // TODO add your handling code here:
+        try {
+            Conexion msyql = new Conexion();
+            Connection cn = msyql.conectar();
+
+            SimpleDateFormat dcn = new SimpleDateFormat("yyy-MM-dd");
+            if (!cmbDocumento.getSelectedItem().equals("Seleccionar")) {
+                if (dcFechaFinalDocumentos.getDate() != null) {
+                    if (dcFechaInicioDocumentos.getDate() != null) {
+
+                        JasperReport reporte = null;
+                        InputStream reportStream;
+
+                        String ruta = "/CapaPresentacion/Reportes/Reporte_Compras_Documento.jasper";
+
+                        Map parametro = new HashMap();
+                        parametro.clear();
+                        parametro.put("fecha_inicio", dcn.format(dcFechaInicioDocumentos.getDate()));
+                        parametro.put("fecha_final", dcn.format(dcFechaFinalDocumentos.getDate()));
+                        parametro.put("documento",(cmbDocumento.getSelectedItem()));
+
+                        reportStream = ReporteComprasVarios_IU.class.getResourceAsStream(ruta);
+                        reporte = (JasperReport) JRLoader.loadObject(reportStream);
+
+                        JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, cn);
+                        JasperViewer jvmostrar = new JasperViewer(jprint, false);
+
+                        jvmostrar.setTitle("REPORTE DE COMPRAS POR DOCUMENTO");
+                        jvmostrar.setVisible(true);
+                        jvmostrar.setExtendedState(6);
+
+                        jvmostrar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                    } else {
+                        advertencia("Ingrese la fecha de inicio...");
+                    }
+                } else {
+                    advertencia("Ingrese la fecha final...");
+                }
+            } else {
+                advertencia("Ingrese documento...");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnImprimirDocumentosActionPerformed
+
+    private void btnImprimirComprasProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirComprasProveedorActionPerformed
+        // TODO add your handling code here:
+        try {
+            Conexion msyql = new Conexion();
+            Connection cn = msyql.conectar();
+
+            SimpleDateFormat dcn = new SimpleDateFormat("yyy-MM-dd");
+          
+                if (dcFechaFinalproveedor.getDate() != null) {
+                    if (dcFechaInicioProveedor.getDate() != null) {
+
+                        JasperReport reporte = null;
+                        InputStream reportStream;
+
+                        String ruta = "/CapaPresentacion/Reportes/Reporte_Compras_Proveedor.jasper";
+
+                        Map parametro = new HashMap();
+                        parametro.clear();
+                        parametro.put("fecha_inicio", dcn.format(dcFechaInicioProveedor.getDate()));
+                        parametro.put("fecha_final", dcn.format(dcFechaFinalproveedor.getDate()));
+                        parametro.put("proveedor",(cmbProveedor.getSelectedItem()));
+
+                        reportStream = ReporteComprasVarios_IU.class.getResourceAsStream(ruta);
+                        reporte = (JasperReport) JRLoader.loadObject(reportStream);
+
+                        JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, cn);
+                        JasperViewer jvmostrar = new JasperViewer(jprint, false);
+
+                        jvmostrar.setTitle("REPORTE DE COMPRAS POR PROVEEDOR");
+                        jvmostrar.setVisible(true);
+                        jvmostrar.setExtendedState(6);
+
+                        jvmostrar.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                    } else {
+                        advertencia("Ingrese la fecha de inicio...");
+                    }
+                } else {
+                    advertencia("Ingrese la fecha final...");
+                }
+           
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnImprimirComprasProveedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

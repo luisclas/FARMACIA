@@ -7,6 +7,7 @@ package CapaPresentacion;
 
 import CapaDatos.Categoria;
 import CapaDatos.Composicion;
+import CapaNegocios.AjustarColumnasJTable;
 import CapaNegocios.CategoriaBD;
 import CapaNegocios.ComposicionBD;
 import CapaNegocios.ProductoBD;
@@ -77,6 +78,9 @@ public class Composicion_IU extends javax.swing.JInternalFrame {
             
 
             tabla_reportar_composicion.setModel(tabla_temporal_composicion);
+             AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reportar_composicion);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            
             
 
         } catch (Exception ex) {

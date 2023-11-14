@@ -6,6 +6,8 @@
 package CapaPresentacion;
 
 import CapaDatos.TipoUsuario;
+import CapaNegocios.AjustarColumnasJTable;
+import CapaNegocios.ColorearColumnasJTable;
 import CapaNegocios.TipoUsuarioBD;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -24,6 +26,8 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
     public TipoUsuario_IU() {
         initComponents();
         reportar();
+        
+       
     }
 
     public void limpiar() {
@@ -54,6 +58,10 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
 
            int cant = tabla_temporal.getRowCount();
             txtCantidad.setText("" + cant);
+            
+            tabla_reporte_TipoUsuario.setModel(tabla_temporal);
+            AjustarColumnasJTable.ajustarAnchoColumnas(tabla_reporte_TipoUsuario);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         } catch (Exception e) {
         }
@@ -223,7 +231,7 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
                     .addComponent(btnEliminar)
                     .addComponent(btnLimpiar)
                     .addComponent(btnCerrar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
